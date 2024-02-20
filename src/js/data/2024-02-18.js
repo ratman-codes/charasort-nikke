@@ -1410,6 +1410,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['electric'],
 	  weapon: ['SG'],
 	  manufacturer: ['elysion'],
+	  SSRalt: true,
     }
   },
   {
