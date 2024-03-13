@@ -1447,6 +1447,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['fire'],
 	  weapon: ['SR'],
 	  manufacturer: ['elysion'],
+	  SSRalt: true,
     }
   },
 ];
