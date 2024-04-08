@@ -112,7 +112,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Neon: Blue Oceon",
-    img: "7xH4pUu.png",
+    img: "wIQD5NQ.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
