@@ -29,6 +29,12 @@ dataSet[dataSetVersion].options = [
     tooltip: "Exclude characters from collab events (eg 2B). You can also uncheck 'Abnormal' in the manufacturer selection to achieve the same goal.",
     checked: false
   },
+    {
+    name: "Exclude April Fools characters",
+    key: "aprilfools",
+    tooltip: "Exclude characters that only appear in april fools events (eg. Shifty)",
+    checked: true
+  },
   {
     name: "Filter by Rarity",
     key: "rarity",
@@ -1487,6 +1493,32 @@ dataSet[dataSetVersion].characterData = [
 	  weapon: ['SR'],
 	  manufacturer: ['abnormal'],
 	  collab: true,
+    }
+  },
+  {
+    name: "Shifty",
+    img: "3LzRP00.png",
+    opts: {
+      rarity: ["R"],
+      burst: ["burst1"],
+	  class: ['supporter'],
+	  element: ['water'],
+	  weapon: ['SMG'],
+	  manufacturer: ['elysion'],
+	  aprilfools: true,
+    }
+  },
+  {
+    name: "Syuen",
+    img: "qWMi7ME.png",
+    opts: {
+      rarity: ["R"],
+      burst: ["burst1"],
+	  class: ['supporter'],
+	  element: ['water'],
+	  weapon: ['SMG'],
+	  manufacturer: ['missilis'],
+	  aprilfools: true,
     }
   },
 ];
