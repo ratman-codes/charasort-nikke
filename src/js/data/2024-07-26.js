@@ -1635,7 +1635,7 @@ dataSet[dataSetVersion].characterData = [
   },  
   {
     name: "Ein",
-    img: "wgkMPvE.png",
+    img: "rY9RpGJ.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
