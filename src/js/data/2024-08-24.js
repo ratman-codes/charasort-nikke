@@ -118,7 +118,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Neon: Blue Oceon",
-    img: "f6QJEQO.png",
+    img: "bPNpkaQ.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1571,7 +1571,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soda: Twinkling Bunny",
-    img: "mVFrFWk.png",
+    img: "IZb7AqW.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
