@@ -5,20 +5,20 @@ dataSet[dataSetVersion] = {};
 
 dataSet[dataSetVersion].options = [
     {
-    name: "Exclude SSR Nikke alts",
+    name: "Exclude alt forms of base SSR Nikkes",
     key: "SSRalt",
     tooltip: "Exclude character forms that are alts of SSR Nikkes (eg: Winter Ludmilla)",
     checked: true
   },
 
     {
-    name: "Exclude SR Nikke alts",
+    name: "Exclude alt forms of base SR Nikkes",
     key: "SRalt",
     tooltip: "Exclude character forms that are alts of SR Nikkes (eg: Summer Anis)",
     checked: true
   },
     {
-    name: "Exclude SR Nikke base form if SSR exists",
+    name: "Exclude SR Nikke base form if SSR alt form exists",
     key: "SRbase",
     tooltip: "Exclude character forms that are SRs but also have an SSR alt form (eg: Anis excluded because S.Anis exists, but Delta included as she has no SSR alt)",
     checked: false
