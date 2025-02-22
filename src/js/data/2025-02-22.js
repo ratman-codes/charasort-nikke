@@ -1873,4 +1873,70 @@ dataSet[dataSetVersion].characterData = [
 	  overspec: true,
     }
   },
+  {
+    name: "Mana",
+    img: "b9ivak.png",
+    opts: {
+      rarity: ["SSR"],
+      burst: ["burst3"],
+	  class: ['attacker'],
+	  element: ['wind'],
+	  weapon: ['AR'],
+	  manufacturer: ['missilis'],
+    }
+  },
+  {
+    name: "Mast: Romantic Maid",
+    img: "q77sdv.png",
+    opts: {
+      rarity: ["SSR"],
+      burst: ["burst2"],
+	  class: ['supporter'],
+	  element: ['water'],
+	  weapon: ['MG'],
+	  manufacturer: ['elysion'],
+	  SSRalt: true,
+    }
+  },
+  {
+    name: "Anchor: Innocent Maid",
+    img: "buwtxt.png",
+    opts: {
+      rarity: ["SSR"],
+      burst: ["burst2"],
+	  class: ['supporter'],
+	  element: ['water'],
+	  weapon: ['RL'],
+	  manufacturer: ['elysion'],
+	  SRalt: true,
+    }
+  },
+  {
+    name: "Asuka: WILLE",
+    img: "bioe3f.png",
+    opts: {
+      rarity: ["SSR"],
+      burst: ["burst3"],
+	  class: ['attacker'],
+	  element: ['wind'],
+	  weapon: ['MG'],
+	  manufacturer: ['abnormal'],
+	  collab: true,
+	  SSRalt: true,
+    }
+  },
+  {
+    name: "Rei Ayanami: (Tentative Name)",
+    img: "v0570c.png",
+    opts: {
+      rarity: ["SSR"],
+      burst: ["burst3"],
+	  class: ['attacker'],
+	  element: ['wind'],
+	  weapon: ['AR'],
+	  manufacturer: ['abnormal'],
+	  collab: true,
+	  SSRalt: true,
+    }
+  },
 ];
