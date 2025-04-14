@@ -1526,7 +1526,7 @@ dataSet[dataSetVersion].characterData = [
     name: "Shifty",
     img: "https://i.postimg.cc/3N418n72/shifty.png",
     opts: {
-      rarity: ["R"],
+      rarity: ["SSR"],
       burst: ["burst1"],
 	  class: ['supporter'],
 	  element: ['water'],
@@ -1539,7 +1539,7 @@ dataSet[dataSetVersion].characterData = [
     name: "Syuen",
     img: "https://i.postimg.cc/hvdYySJF/syuen.png",
     opts: {
-      rarity: ["R"],
+      rarity: ["SSR"],
       burst: ["burst1"],
 	  class: ['supporter'],
 	  element: ['water'],
@@ -1973,6 +1973,19 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['water'],
 	  weapon: ['RL'],
 	  manufacturer: ['tetra'],
+    }
+  },
+  {
+    name: "Mecha Shifty",
+    img: "https://i.postimg.cc/pX7QZgzv/mecha-shifty.png",
+    opts: {
+      rarity: ["SSR"],
+      burst: ["burst1"],
+	  class: ['attacker'],
+	  element: ['water'],
+	  weapon: ['RL'],
+	  manufacturer: ['elysion'],
+	  aprilfools: true,
     }
   },
 ];

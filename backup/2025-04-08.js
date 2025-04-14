@@ -106,7 +106,7 @@ dataSet[dataSetVersion].options = [
 dataSet[dataSetVersion].characterData = [
   {
     name: "Rapi",
-    img: "https://i.postimg.cc/W3SCF9QK/rapi.png",
+    img: "1spsd2.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst3"],
@@ -119,7 +119,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Neon",
-    img: "https://i.postimg.cc/jdRCrCXS/neon.png",
+    img: "y9a1wd.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -132,7 +132,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Neon: Blue Oceon",
-    img: "https://i.postimg.cc/VL4vs1GB/neonsummer.png",
+    img: "d494cz.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -145,7 +145,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Anis",
-    img: "https://i.postimg.cc/pLdwvB8L/anis.png",
+    img: "evbrnd.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst2"],
@@ -158,7 +158,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Anis: Sparkling Summer",
-    img: "https://i.postimg.cc/wBCZh8r1/anissummer.png",
+    img: "qs6whn.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -171,7 +171,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Delta",
-    img: "https://i.postimg.cc/R07QbkF6/delta.png",
+    img: "xavg0m.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst2"],
@@ -183,7 +183,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Signal",
-    img: "https://i.postimg.cc/WzBnhgbC/signal.png",
+    img: "lgvxjt.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -195,7 +195,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Poli",
-    img: "https://i.postimg.cc/kGTCCMJ2/poli.png",
+    img: "jx6eha.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -207,7 +207,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Miranda",
-    img: "https://i.postimg.cc/02CM67QS/miranda.png",
+    img: "akwg6s.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -219,7 +219,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Quiry",
-    img: "https://i.postimg.cc/65Ssfmyx/quiry.png",
+    img: "ziw6n7.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -231,7 +231,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "D",
-    img: "https://i.postimg.cc/4xh1p7R1/d.png",
+    img: "sg6pb4.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -243,7 +243,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Belorta",
-    img: "https://i.postimg.cc/8PZYZr3Q/belorta.png",
+    img: "rtel1r.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst2"],
@@ -255,7 +255,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mica",
-    img: "https://i.postimg.cc/C1fndtBM/mica.png",
+    img: "68c2fo.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -268,7 +268,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mica: Snow Buddy",
-    img: "https://i.postimg.cc/rsX04Jx1/micawinter.png",
+    img: "qcymqu.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -281,7 +281,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Brid",
-    img: "https://i.postimg.cc/vBw24719/brid.png",
+    img: "99nm9d.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -293,7 +293,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soline",
-    img: "https://i.postimg.cc/263MWdrS/soline.png",
+    img: "lrxeyd.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -305,7 +305,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Diesel",
-    img: "https://i.postimg.cc/RFvQrg6P/diesel.png",
+    img: "clwg2f.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -317,7 +317,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Centi",
-    img: "https://i.postimg.cc/sDHnYCQ3/centi.png",
+    img: "0vqsct.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -329,7 +329,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Liter",
-    img: "https://i.postimg.cc/DwgrKtst/liter.png",
+    img: "lylyvo.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -341,7 +341,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Emma",
-    img: "https://i.postimg.cc/m2195vpL/emma.png",
+    img: "gmbvha.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -353,7 +353,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Vesti",
-    img: "https://i.postimg.cc/Gpm50PBx/vesti.png",
+    img: "wuej23.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -365,7 +365,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Eunhwa",
-    img: "https://i.postimg.cc/tgkn6pJ5/eunhwa.png",
+    img: "brc6i1.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -377,7 +377,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Laplace",
-    img: "https://i.postimg.cc/VLX9KSNs/laplace.png",
+    img: "hpea93.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -389,7 +389,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Drake",
-    img: "https://i.postimg.cc/Sx8WJBcT/drake.png",
+    img: "kr26w6.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -401,7 +401,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Maxwell",
-    img: "https://i.postimg.cc/QMzW8sMn/maxwell.png",
+    img: "yeim2g.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -413,7 +413,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Crow",
-    img: "https://i.postimg.cc/L56TPxmq/crow.png",
+    img: "geqzt4.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -425,7 +425,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Jackal",
-    img: "https://i.postimg.cc/rsrGXsCJ/jackal.png",
+    img: "ykq8d8.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -437,7 +437,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Viper",
-    img: "https://i.postimg.cc/nLSw-nsBb/viper.png",
+    img: "yuizu3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -449,7 +449,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "N102",
-    img: "https://i.postimg.cc/hjxhKd6f/n102.png",
+    img: "4unsy9.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -462,7 +462,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Anne: Miracle Fairy",
-    img: "https://i.postimg.cc/tTFfkv02/anne.png",
+    img: "h231v4.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -475,7 +475,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mary",
-    img: "https://i.postimg.cc/1506pLWf/mary.png",
+    img: "jhvmx5.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -487,7 +487,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mary: Bay Goddess",
-    img: "https://i.postimg.cc/nhHmT05T/marysummer.png",
+    img: "7wqjic.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -500,7 +500,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Pepper",
-    img: "https://i.postimg.cc/fbdMdhKP/pepper.png",
+    img: "yid8u8.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -512,7 +512,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Sugar",
-    img: "https://i.postimg.cc/pT77J9LY/sugar.png",
+    img: "rd7g6u.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -524,7 +524,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Milk",
-    img: "https://i.postimg.cc/59LFVhWn/milk.png",
+    img: "f2t9mi.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -536,7 +536,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Frima",
-    img: "https://i.postimg.cc/4xTYFmhP/frima.png",
+    img: "yj4yev.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -548,7 +548,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Julia",
-    img: "https://i.postimg.cc/G38xsgwy/julia.png",
+    img: "aftxhp.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -560,7 +560,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Yuni",
-    img: "https://i.postimg.cc/139W60K1/yuni.png",
+    img: "xd5mtv.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -572,7 +572,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mihara",
-    img: "https://i.postimg.cc/QCQBJTJR/mihara.png",
+    img: "2mwxnp.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst3"],
@@ -584,7 +584,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Privaty",
-    img: "https://i.postimg.cc/xTdYRm5M/privaty.png",
+    img: "ea40sn.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -596,7 +596,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Yulha",
-    img: "https://i.postimg.cc/150Cf7wK/yulha.png",
+    img: "82x54k.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -608,7 +608,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Admi",
-    img: "https://i.postimg.cc/q7WVjCNM/admi.png",
+    img: "v1gbu3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -620,7 +620,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Guillotine",
-    img: "https://i.postimg.cc/vm0DBh22/guillotine.png",
+    img: "r0p00t.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -632,7 +632,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Maiden",
-    img: "https://i.postimg.cc/26qhhyJD/maiden.png",
+    img: "mwiubu.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -644,7 +644,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Ludmilla",
-    img: "https://i.postimg.cc/d0V8Q4jD/ludmilla.png",
+    img: "1zfhm6.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -656,7 +656,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Ludmilla: Winter Owner",
-    img: "https://i.postimg.cc/Zqs6WpwH/ludmillawinter.png",
+    img: "imovab.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -669,7 +669,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Alice",
-    img: "https://i.postimg.cc/2jQR7yrr/alice.png",
+    img: "mzd3hc.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -681,7 +681,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Tove",
-    img: "https://i.postimg.cc/dQbp7TXJ/tove.png",
+    img: "4b2cjw.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -693,7 +693,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Neve",
-    img: "https://i.postimg.cc/VN0kFtYD/neve.png",
+    img: "lcg9wu.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst3"],
@@ -705,7 +705,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rupee",
-    img: "https://i.postimg.cc/nh8RzbXr/rupee.png",
+    img: "oo9fb0.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -717,7 +717,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rupee: Winter Shopper",
-    img: "https://i.postimg.cc/ht9CQymr/rupeewinter.png",
+    img: "480sl9.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -730,7 +730,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Yan",
-    img: "https://i.postimg.cc/449FTx3q/yan.png",
+    img: "d0npqv.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -742,7 +742,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Dolla",
-    img: "https://i.postimg.cc/fyrx9ZHF/dolla.png",
+    img: "yd3pt3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -754,7 +754,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Exia",
-    img: "https://i.postimg.cc/3Rw4CVDH/exia.png",
+    img: "1lg6sm.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -766,7 +766,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Novel",
-    img: "https://i.postimg.cc/P5PXtD8T/novel.png",
+    img: "yc3rel.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -778,7 +778,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Snow White",
-    img: "https://i.postimg.cc/8kxQhYFQ/snowwhite.png",
+    img: "njj7lk.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -790,7 +790,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Snow White: Innocent Days",
-    img: "https://i.postimg.cc/02mgZCm6/snowwhiteyoung.png",
+    img: "m81muw.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -803,7 +803,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rapunzel",
-    img: "https://i.postimg.cc/pr6SkmVJ/rapunzel.png",
+    img: "qaay5e.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -815,7 +815,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Scarlet",
-    img: "https://i.postimg.cc/C16JpWyF/scarlet.png",
+    img: "omgw5p.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -827,7 +827,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Scarlet: Black Shadow",
-    img: "https://i.postimg.cc/XJvxhnzH/scarlet-black-shadow.png",
+    img: "vgayf4.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -840,7 +840,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Harran",
-    img: "https://i.postimg.cc/J7GP54Jt/harran.png",
+    img: "b14381.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -852,7 +852,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Isabel",
-    img: "https://i.postimg.cc/NMV8zmTF/isabel.png",
+    img: "bm8ucp.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -864,7 +864,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Noah",
-    img: "https://i.postimg.cc/zv8D5PTc/noah.png",
+    img: "d9437o.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -876,7 +876,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Dorothy",
-    img: "https://i.postimg.cc/dtg2QsZZ/dorothy.png",
+    img: "cmdwoz.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -888,7 +888,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Epinel",
-    img: "https://i.postimg.cc/T38bMtBr/epinel.png",
+    img: "758izk.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -900,7 +900,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Folkwang",
-    img: "https://i.postimg.cc/pV4hz0Wg/folkwang.png",
+    img: "92xbsl.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -912,7 +912,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Modernia",
-    img: "https://i.postimg.cc/wB17bPk5/modernia.png",
+    img: "aq68fd.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -924,7 +924,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Nihilister",
-    img: "https://i.postimg.cc/hj94kqQm/nihilister.png",
+    img: "1irid5.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -936,7 +936,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Blanc",
-    img: "https://i.postimg.cc/XYhzb64s/blanc.png",
+    img: "9cgjwk.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -948,7 +948,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Noir",
-    img: "https://i.postimg.cc/RhdS0QRV/noir.png",
+    img: "q5vnnr.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -960,7 +960,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rosanna",
-    img: "https://i.postimg.cc/gjnSw-GyX/rosanna.png",
+    img: "ae2oj3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -972,7 +972,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Sakura",
-    img: "https://i.postimg.cc/TPftVVqX/sakura.png",
+    img: "u1vqs3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -984,7 +984,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Ether",
-    img: "https://i.postimg.cc/fRx9wxh1/ether.png",
+    img: "6a2ges.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -996,7 +996,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soldier EG",
-    img: "https://i.postimg.cc/qvXPHM14/soldereg.png",
+    img: "h4bhg1.png",
     opts: {
       rarity: ["R"],
       burst: ["burst3"],
@@ -1008,7 +1008,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soldier FA",
-    img: "https://i.postimg.cc/GpLZLwfY/soldierfa.png",
+    img: "0abnkk.png",
     opts: {
       rarity: ["R"],
       burst: ["burst2"],
@@ -1020,7 +1020,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soldier OW",
-    img: "https://i.postimg.cc/0NVhrXg4/soldierow.png",
+    img: "fhgpaj.png",
     opts: {
       rarity: ["R"],
       burst: ["burst1"],
@@ -1032,7 +1032,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Product 08",
-    img: "https://i.postimg.cc/Xv90JkNS/product08.png",
+    img: "itxsdx.png",
     opts: {
       rarity: ["R"],
       burst: ["burst1"],
@@ -1044,7 +1044,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Product 12",
-    img: "https://i.postimg.cc/ydBCS3WJ/product12.png",
+    img: "qns5xk.png",
     opts: {
       rarity: ["R"],
       burst: ["burst3"],
@@ -1056,7 +1056,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Product 23",
-    img: "https://i.postimg.cc/RFR51Cng/product23.png",
+    img: "16pn2k.png",
     opts: {
       rarity: ["R"],
       burst: ["burst2"],
@@ -1068,7 +1068,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "iDoll Flower",
-    img: "https://i.postimg.cc/fbzvtwDz/idollflower.png",
+    img: "zty5u5.png",
     opts: {
       rarity: ["R"],
       burst: ["burst1"],
@@ -1080,7 +1080,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "iDoll Ocean",
-    img: "https://i.postimg.cc/KY0Dtd8n/idollocean.png",
+    img: "6wilfm.png",
     opts: {
       rarity: ["R"],
       burst: ["burst1"],
@@ -1092,7 +1092,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "iDoll Sun",
-    img: "https://i.postimg.cc/wv3c201n/idollsun.png",
+    img: "8nz0ni.png",
     opts: {
       rarity: ["R"],
       burst: ["burst3"],
@@ -1104,7 +1104,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Cocoa",
-    img: "https://i.postimg.cc/V6Fg5xPQ/cocoa.png",
+    img: "c2h8d6.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1116,7 +1116,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soda",
-    img: "https://i.postimg.cc/fRhGP0j8/soda.png",
+    img: "fmzlds.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1128,7 +1128,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Marciana",
-    img: "https://i.postimg.cc/Pfw1qLYb/marciana.png",
+    img: "iwac1i.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1140,7 +1140,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mast",
-    img: "https://i.postimg.cc/yNxZCW7Z/mast.png",
+    img: "44ibiu.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1152,7 +1152,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Anchor",
-    img: "https://i.postimg.cc/Pryg07C7/anchor.png",
+    img: "fs840d.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -1164,7 +1164,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Helm",
-    img: "https://i.postimg.cc/2jMTcRFG/helm.png",
+    img: "n74ltu.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1176,7 +1176,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Helm: Aquamarine",
-    img: "https://i.postimg.cc/DyG6RjxT/helmsummer.png",
+    img: "hmk0uv.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1189,7 +1189,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Nero",
-    img: "https://i.postimg.cc/7ZWL79y5/nero.png",
+    img: "a3pc7d.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1201,7 +1201,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Biscuit",
-    img: "https://i.postimg.cc/x1q4h1Dk/biscuit.png",
+    img: "cnc40c.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1213,7 +1213,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rei",
-    img: "https://i.postimg.cc/g0HBQSkJ/rei.png",
+    img: "whyb0p.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1225,7 +1225,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Guilty",
-    img: "https://i.postimg.cc/cH6C83Vx/guilty.png",
+    img: "bj5ovh.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1237,7 +1237,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Sin",
-    img: "https://i.postimg.cc/05z1Kvy0/sin.png",
+    img: "guvefw.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1249,7 +1249,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Quency",
-    img: "https://i.postimg.cc/L58dxdt2/quency.png",
+    img: "0cqd5i.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1261,7 +1261,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Noise",
-    img: "https://i.postimg.cc/L436v2pK/noise.png",
+    img: "z7woh3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1273,7 +1273,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Volume",
-    img: "https://i.postimg.cc/NMyCFgky/volume.png",
+    img: "iqipra.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1285,7 +1285,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Aria",
-    img: "https://i.postimg.cc/Rh9YD149/aria.png",
+    img: "gw5jbh.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1297,7 +1297,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Naga",
-    img: "https://i.postimg.cc/wMQvmd6z/naga.png",
+    img: "t6zly2.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1309,7 +1309,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Tia",
-    img: "https://i.postimg.cc/mZzK2Smd/tia.png",
+    img: "huktak.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1321,7 +1321,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Red Hood",
-    img: "https://i.postimg.cc/281My7Tc/redhood.png",
+    img: "ck8paw.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1","burst2","burst3"],
@@ -1333,7 +1333,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Makima",
-    img: "https://i.postimg.cc/W3QrnjLJ/makima.png",
+    img: "xtjaix.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1346,7 +1346,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Power",
-    img: "https://i.postimg.cc/v8hbfhrG/power.png",
+    img: "f6n4qg.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1359,7 +1359,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Himeno",
-    img: "https://i.postimg.cc/3xH1hXqD/himeno.png",
+    img: "btxgks.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst2"],
@@ -1372,7 +1372,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "2B",
-    img: "https://i.postimg.cc/NjfcMthY/2b.png",
+    img: "m0cpqs.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1385,7 +1385,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "A2",
-    img: "https://i.postimg.cc/zBWmMXhw/a2.png",
+    img: "uxkwl3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1398,7 +1398,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Pascal",
-    img: "https://i.postimg.cc/sgqV12pS/pascal.png",
+    img: "4k530f.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -1411,7 +1411,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Leona",
-    img: "https://i.postimg.cc/rwc138d1/leona.png",
+    img: "76e0as.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1423,7 +1423,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Moran",
-    img: "https://i.postimg.cc/s2bvFcnk/moran.png",
+    img: "go694c.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1435,7 +1435,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Privaty: Unkind Maid",
-    img: "https://i.postimg.cc/kXhCh5YZ/privatymaid.png",
+    img: "3ap6hn.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1448,7 +1448,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Ade",
-    img: "https://i.postimg.cc/3wkQXZJc/ade.png",
+    img: "mhga6e.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1460,7 +1460,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Elegg",
-    img: "https://i.postimg.cc/bJYbVdWW/elegg.png",
+    img: "4l82xy.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1472,7 +1472,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "D: Killer Wife",
-    img: "https://i.postimg.cc/FzRyz1x3/dkillerwife.png",
+    img: "n6zzlu.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1485,7 +1485,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Emilia",
-    img: "https://i.postimg.cc/Y2sg8r3D/emilia.png",
+    img: "17k54d.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1498,7 +1498,7 @@ dataSet[dataSetVersion].characterData = [
   },
     {
     name: "Rem",
-    img: "https://i.postimg.cc/FRFn4y7x/rem.png",
+    img: "wqxd33.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1511,7 +1511,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Ram",
-    img: "https://i.postimg.cc/T3Wz7JDL/ram.png",
+    img: "e5qxfu.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -1524,7 +1524,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Shifty",
-    img: "https://i.postimg.cc/3N418n72/shifty.png",
+    img: "7gr1in.png",
     opts: {
       rarity: ["R"],
       burst: ["burst1"],
@@ -1537,7 +1537,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Syuen",
-    img: "https://i.postimg.cc/hvdYySJF/syuen.png",
+    img: "mawi2w.png",
     opts: {
       rarity: ["R"],
       burst: ["burst1"],
@@ -1550,7 +1550,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Bay",
-    img: "https://i.postimg.cc/PrXcbMSQ/bay.png",
+    img: "pz1bo4.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1562,7 +1562,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Crown",
-    img: "https://i.postimg.cc/NFJxkR0d/crown.png",
+    img: "i17p9z.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1574,7 +1574,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Kilo",
-    img: "https://i.postimg.cc/VsxB99mH/kilo.png",
+    img: "lnf9jh.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1586,7 +1586,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Trony",
-    img: "https://i.postimg.cc/nhZW2fp5/trony.png",
+    img: "047feh.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1598,7 +1598,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Soda: Twinkling Bunny",
-    img: "https://i.postimg.cc/jqX3j7Rw/bunny-soda.png",
+    img: "c5scag.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1611,7 +1611,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Alice: Wonderland Bunny",
-    img: "https://i.postimg.cc/d1RHr7df/bunny-alice.png",
+    img: "lgm6u9.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1624,7 +1624,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Clay",
-    img: "https://i.postimg.cc/BndMz5By/clay.png",
+    img: "72zfm3.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1636,7 +1636,7 @@ dataSet[dataSetVersion].characterData = [
   },  
   {
     name: "Sakura: Bloom in Summer",
-    img: "https://i.postimg.cc/QMm00F0K/sakurasummer.png",
+    img: "g2mxp5.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1649,7 +1649,7 @@ dataSet[dataSetVersion].characterData = [
   },  
   {
     name: "Rosanna: Chic Ocean",
-    img: "https://i.postimg.cc/85yXP7vg/rochico.png",
+    img: "qavh75.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1662,7 +1662,7 @@ dataSet[dataSetVersion].characterData = [
   },  
   {
     name: "Ein",
-    img: "https://i.postimg.cc/ZqxpL676/ein.png",
+    img: "6ebhlq.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1674,7 +1674,7 @@ dataSet[dataSetVersion].characterData = [
   }, 
   {
     name: "Zwei",
-    img: "https://i.postimg.cc/Mpd9YcsM/zwei.png",
+    img: "5eyqki.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1686,7 +1686,7 @@ dataSet[dataSetVersion].characterData = [
   },    
   {
     name: "Asuka",
-    img: "https://i.postimg.cc/8kB9rYmC/asuka.png",
+    img: "uggv0s.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1699,7 +1699,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rei Ayanami",
-    img: "https://i.postimg.cc/s2rNndzq/rei-eva.png",
+    img: "wcl216.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1712,7 +1712,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mari",
-    img: "https://i.postimg.cc/jdYPns4p/mari.png",
+    img: "5dhj4r.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1725,7 +1725,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Misato",
-    img: "https://i.postimg.cc/t4C1F7ZM/misato.png",
+    img: "x4b4vt.png",
     opts: {
       rarity: ["SR"],
       burst: ["burst1"],
@@ -1738,7 +1738,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rouge",
-    img: "https://i.postimg.cc/05BXTJxp/rouge.png",
+    img: "hdi0cx.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1750,7 +1750,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Quency: Escape Queen",
-    img: "https://i.postimg.cc/yYW49H6T/quencyescapequeen.png",
+    img: "vixmk1.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1763,7 +1763,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Phantom",
-    img: "https://i.postimg.cc/fLhDjgqR/phantom.png",
+    img: "iqg38q.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1775,7 +1775,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rumani",
-    img: "https://i.postimg.cc/bNSVpNN4/rumani.png",
+    img: "84pw3n.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1787,7 +1787,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Cinderella",
-    img: "https://i.postimg.cc/jdSgnSj8/cindy.png",
+    img: "pn4uem.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1799,7 +1799,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Grave",
-    img: "https://i.postimg.cc/DwdSVnrT/grave.png",
+    img: "jbutkj.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1811,7 +1811,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rapunzel: Pure Grace",
-    img: "https://i.postimg.cc/D0ZDqrhz/rapunzel-grace.png",
+    img: "luex6h.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1"],
@@ -1824,7 +1824,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Flora",
-    img: "https://i.postimg.cc/fLg3HCxS/flora.png",
+    img: "aa8ut0.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1836,7 +1836,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Maiden: Ice Rose",
-    img: "https://i.postimg.cc/90ZxPJSC/winter-maiden.png",
+    img: "d7ro0v.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1849,7 +1849,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Guillotine: Winter Slayer",
-    img: "https://i.postimg.cc/B6dY1dmm/winter-guillo.png",
+    img: "tpdhtl.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1862,7 +1862,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rapi: Red Hood",
-    img: "https://i.postimg.cc/436rZ4wX/rapi-red-hood.png",
+    img: "kvss7s.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst1","burst3"],
@@ -1875,7 +1875,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mana",
-    img: "https://i.postimg.cc/VvntZTmZ/mana.png",
+    img: "b9ivak.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1887,7 +1887,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Mast: Romantic Maid",
-    img: "https://i.postimg.cc/vZ3VK5wy/mast-maid.png",
+    img: "q77sdv.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1900,7 +1900,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Anchor: Innocent Maid",
-    img: "https://i.postimg.cc/SNm0T4x8/anchor-maid.png",
+    img: "buwtxt.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1913,7 +1913,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Asuka: WILLE",
-    img: "https://i.postimg.cc/RhRY53Zt/asuka-wille.png",
+    img: "bioe3f.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1927,7 +1927,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Rei Ayanami: (Tentative Name)",
-    img: "https://i.postimg.cc/JzJFc7fj/rei-ayanami-tentative.png",
+    img: "v0570c.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1941,7 +1941,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Trina",
-    img: "https://i.postimg.cc/VkRVHZNN/trina.png",
+    img: "l5wiuw.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
@@ -1953,7 +1953,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Bready",
-    img: "https://i.postimg.cc/hGd34ZGc/bready.png",
+    img: "ra2o0f.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst3"],
@@ -1965,7 +1965,7 @@ dataSet[dataSetVersion].characterData = [
   },
   {
     name: "Crust",
-    img: "https://i.postimg.cc/Dy06ypCH/crust.png",
+    img: "um5d1y.png",
     opts: {
       rarity: ["SSR"],
       burst: ["burst2"],
