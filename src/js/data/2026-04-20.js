@@ -132,7 +132,7 @@ dataSet[dataSetVersion].characterData = [
     }
   },
   {
-    name: "Neon: Blue Oceon",
+    name: "Neon: Blue Ocean",
     img: "VL4vs1GB/neonsummer.png",
     opts: {
       rarity: ["SSR"],
