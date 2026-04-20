@@ -5,28 +5,21 @@ dataSet[dataSetVersion] = {};
 
 dataSet[dataSetVersion].options = [
     {
-    name: "Exclude alt forms of base SSR Nikkes",
-    key: "SSRalt",
-    tooltip: "Exclude character forms that are alts of SSR Nikkes (eg: Winter Ludmilla)",
-    checked: true
-  },
-
-    {
-    name: "Exclude alt forms of base SR Nikkes",
-    key: "SRalt",
-    tooltip: "Exclude character forms that are alts of SR Nikkes (eg: Summer Anis)",
-    checked: true
-  },
-    {
-    name: "Exclude SR Nikke base form if SSR alt form exists",
-    key: "SRbase",
-    tooltip: "Exclude character forms that are SRs but also have an SSR alt form (eg: Anis excluded because S.Anis exists, but Neve included as she has no SSR alt)",
+    name: "Exclude Collab Nikkes",
+    key: "collab",
+    tooltip: "Exclude characters from collab events (eg 2B). You can also uncheck 'Abnormal' in the manufacturer selection to achieve the same goal.",
     checked: false
   },
     {
-    name: "Exclude base forms of Overspec Nikkes",
-    key: "overspecbase",
-    tooltip: "Exclude character forms that are base forms of existing overspec nikkes (eg: Exclude Rapi and Mihara base SR versions)",
+    name: "Exclude Rare Nikkes",
+    key: "rikker",
+    tooltip: "Exclude 'R' Rare Nikkes (eg: iDoll Ocean). You can also uncheck 'R' in the rarity section to achieve the same goal.",
+    checked: false
+  },
+    {
+    name: "Exclude April Fools characters",
+    key: "aprilfools",
+    tooltip: "Exclude characters that only appear in april fools events (eg. Shifty)",
     checked: true
   },
     {
@@ -36,17 +29,30 @@ dataSet[dataSetVersion].options = [
     checked: false
   },
     {
-    name: "Exclude Collab Nikkes",
-    key: "collab",
-    tooltip: "Exclude characters from collab events (eg 2B). You can also uncheck 'Abnormal' in the manufacturer selection to achieve the same goal.",
+    name: "Exclude SR Nikke base form only if SSR alt form exists",
+    key: "SRbase",
+    tooltip: "Exclude character forms that are SRs but also have an SSR alt form (eg: would exclude Anis due to S.Anis but include Neve as she has no SSR alt)",
     checked: false
   },
     {
-    name: "Exclude April Fools characters",
-    key: "aprilfools",
-    tooltip: "Exclude characters that only appear in april fools events (eg. Shifty)",
+    name: "Exclude alt forms of base SSR Nikkes",
+    key: "SSRalt",
+    tooltip: "Exclude character forms that are alts of SSR Nikkes (eg: Winter Ludmilla)",
     checked: true
   },
+    {
+    name: "Exclude base forms of Overspec Nikkes",
+    key: "overspecbase",
+    tooltip: "Exclude character forms that are base forms of existing overspec nikkes (eg: Exclude Rapi and Mihara base SR versions)",
+    checked: true
+  },
+    {
+    name: "Exclude alt forms of base SR Nikkes",
+    key: "SRalt",
+    tooltip: "Exclude character forms that are alts of SR Nikkes (eg: Summer Anis)",
+    checked: true
+  },
+
 // ---------------------------------------------------------------------------------------
   {
     name: "Filter by Rarity",
@@ -1008,6 +1014,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['electric'],
 	  weapon: ['AR'],
 	  manufacturer: ['elysion'],
+	  rikker:true,
     }
   },
   {
@@ -1020,6 +1027,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['iron'],
 	  weapon: ['SG'],
 	  manufacturer: ['elysion'],
+	  rikker:true,
     }
   },
   {
@@ -1032,6 +1040,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['fire'],
 	  weapon: ['SMG'],
 	  manufacturer: ['elysion'],
+	  rikker:true,
     }
   },
   {
@@ -1044,6 +1053,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['electric'],
 	  weapon: ['SR'],
 	  manufacturer: ['missilis'],
+	  rikker:true,
     }
   },
   {
@@ -1056,6 +1066,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['fire'],
 	  weapon: ['MG'],
 	  manufacturer: ['missilis'],
+	  rikker:true,
     }
   },
   {
@@ -1068,6 +1079,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['wind'],
 	  weapon: ['SG'],
 	  manufacturer: ['missilis'],
+	  rikker:true,
     }
   },
   {
@@ -1080,6 +1092,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['wind'],
 	  weapon: ['RL'],
 	  manufacturer: ['tetra'],
+	  rikker:true,
     }
   },
   {
@@ -1092,6 +1105,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['water'],
 	  weapon: ['SMG'],
 	  manufacturer: ['tetra'],
+	  rikker:true,
     }
   },
   {
@@ -1104,6 +1118,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['iron'],
 	  weapon: ['AR'],
 	  manufacturer: ['tetra'],
+	  rikker:true,
     }
   },
   {
