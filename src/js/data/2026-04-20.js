@@ -181,6 +181,7 @@ dataSet[dataSetVersion].characterData = [
 	  element: ['wind'],
 	  weapon: ['SR'],
 	  manufacturer: ['elysion'],
+	  SRbase: true,
     }
   },
   {
