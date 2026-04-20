@@ -20,7 +20,7 @@ dataSet[dataSetVersion].options = [
     {
     name: "Exclude SR Nikke base form if SSR alt form exists",
     key: "SRbase",
-    tooltip: "Exclude character forms that are SRs but also have an SSR alt form (eg: Anis excluded because S.Anis exists, but Delta included as she has no SSR alt)",
+    tooltip: "Exclude character forms that are SRs but also have an SSR alt form (eg: Anis excluded because S.Anis exists, but Neve included as she has no SSR alt)",
     checked: false
   },
     {
