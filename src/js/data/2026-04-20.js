@@ -32,7 +32,7 @@ dataSet[dataSetVersion].options = [
     {
     name: "Exclude Overspec Nikke forms",
     key: "overspec",
-    tooltip: "Exclude character forms that are Overspecs of previously existing Nikkes",
+    tooltip: "Exclude character forms that are Overspecs of previously existing Nikkes (eg: Exclude Rapi: Red Hood)",
     checked: false
   },
     {
