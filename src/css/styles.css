@@ -360,7 +360,7 @@ label:hover {
 
 .results .col { box-sizing: border-box; border: 1px solid var(--line-soft); background: var(--panel); padding: 8px; display: flex; flex-direction: column; }
 .results .col.pics { width: 136px; }
-.results .col.text { width: 200px; }
+.results .col.text { width: 190px; }
 
 .results .tile { display: grid; grid-template-columns: 30px 1fr; grid-template-rows: auto auto; column-gap: 6px; row-gap: 4px; padding: 6px 0; border-bottom: 1px solid var(--line-soft); }
 .results .tile:first-child { padding-top: 0; }

@@ -572,8 +572,8 @@ function result(imageNum = defaultPortraitCount()) {
       <div class="pic"><img src="${char.img}" alt=""></div>
       <div class="nm" title="${char.name}">${base}${sub ? `<small>${sub}</small>` : ''}</div></div>`;
   };
-  /** Text rows are 200px wide: rank takes ~40px, leaving ~144px. Names are trimmed in code rather than clipped by CSS, which the bundled html2canvas handles badly. */
-  const ROW_TEXT = 134;
+  /** Text rows are 190px wide: padding and the rank take ~60px, leaving ~130px. Names are trimmed in code rather than clipped by CSS. */
+  const ROW_TEXT = 126;
   const row = (char, rank, tie) => {
     const [base, ...rest] = char.name.split(': ');
     const name = fitText(base, `12px ${FONT}`, ROW_TEXT);
