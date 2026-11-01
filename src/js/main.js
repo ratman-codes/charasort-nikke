@@ -62,6 +62,13 @@ function init() {
 
   document.querySelector('.clearsave').addEventListener('click', clearProgress);
 
+  /** On touch screens there is no hover: a tap on a thumbnail opens its preview, a tap anywhere else closes it. */
+  document.addEventListener('click', (ev) => {
+    const thumb = ev.target.closest('.sort.alts .thumb');
+    document.querySelectorAll('.sort.alts .thumb.open').forEach(t => { if (t !== thumb) t.classList.remove('open'); });
+    if (thumb) thumb.classList.toggle('open');
+  });
+
   /** Leaving mid-sort: progress is autosaved after every pick, so the start screen can resume it. */
   document.querySelector('.sorting.backhome').addEventListener('click', () => {
     const ok = window.confirm('Your progress is saved automatically after every pick, and Load Autosave on the front page will bring you right back here.\n\nBut if you start a new sort, this one is overwritten and the picks you made so far are gone for good. If you want to keep them, hit Save first and keep the URL.\n\nGo back to the front page?');
@@ -223,9 +230,33 @@ function selectCharacters() {
   return list;
 }
 
+/**
+ * Forms of the same character are linked by the part of the name before the colon
+ * ("Scarlet: Black Shadow" belongs with "Scarlet"), plus two hand-made links for names
+ * that don't follow that pattern.
+ */
+const FAMILY_LINKS = { 'Anne: Miracle Fairy': 'N102', 'Marian: Queen': 'Marian (Modernia)' };
+function familyOf(name) {
+  return FAMILY_LINKS[name] || name.split(': ')[0];
+}
+
+/** name -> the character's other forms that are NOT in the current sort (what the thumbnail row shows). */
+let excludedForms = {};
+function computeExcludedForms() {
+  excludedForms = {};
+  const sorting = new Set(characterDataToSort.map(c => c.name));
+  const families = {};
+  characterData.forEach(c => { (families[familyOf(c.name)] = families[familyOf(c.name)] || []).push(c); });
+  characterDataToSort.forEach(c => {
+    const out = (families[familyOf(c.name)] || []).filter(o => !sorting.has(o.name));
+    if (out.length) excludedForms[c.name] = out;
+  });
+}
+
 /** Begin sorting. */
 function start() {
   characterDataToSort = selectCharacters();
+  computeExcludedForms();
   undoStack = [];
   redoStack = [];
   updateUndoButtons();
@@ -309,6 +340,7 @@ function start() {
     document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'flex');
     document.querySelector('.sorting.backhome').style.display = 'block';
     document.querySelectorAll('.sort.text').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.sort.alts').forEach(el => el.style.display = 'flex');
     display();
   });
 }
@@ -342,6 +374,14 @@ function display() {
 
   document.querySelector('.left.sort.text').innerHTML = charNameDisp(leftChar.name);
   document.querySelector('.right.sort.text').innerHTML = charNameDisp(rightChar.name);
+
+  /** Thumbnails of this character's other forms that are left out of the sort; hover or tap one for a bigger look. */
+  const altsDisp = char => (excludedForms[char.name] || []).map(o => {
+    const label = o.name.includes(': ') && familyOf(o.name) === familyOf(char.name) && !FAMILY_LINKS[o.name] ? o.name.split(': ').slice(1).join(': ') : o.name;
+    return `<span class="thumb" tabindex="0" title="${o.name}"><img src="${o.img}" alt=""><span class="preview"><img src="${o.img}" alt=""><b>${label}</b></span></span>`;
+  }).join('');
+  document.querySelector('.left.sort.alts').innerHTML = altsDisp(leftChar);
+  document.querySelector('.right.sort.alts').innerHTML = altsDisp(rightChar);
 
   /** Autopick if choice has been given. */
   if (choices.length !== battleNo - 1) {
@@ -551,7 +591,7 @@ function result(imageNum = defaultPortraitCount()) {
 
   document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'none');
   document.querySelector('.sorting.backhome').style.display = 'none';
-  document.querySelectorAll('.sort.text').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.sort.text, .sort.alts').forEach(el => el.style.display = 'none');
   document.querySelector('.options').style.display = 'none';
   document.querySelector('.info').style.display = 'none';
 
@@ -990,7 +1030,8 @@ function imageURL(img) {
 }
 
 function preloadImages() {
-  const totalLength = characterDataToSort.length;
+  const extraCount = new Set([].concat(...Object.values(excludedForms))).size;
+  const totalLength = characterDataToSort.length + extraCount;
   let imagesLoaded = 0;
 
   const tick = () => progressBar(`Loading images ${++imagesLoaded} of ${totalLength}`, Math.floor(imagesLoaded * 100 / totalLength));
@@ -1017,9 +1058,13 @@ function preloadImages() {
     }).catch(() => { tick(); res(src); });
   });
 
+  const extras = [];
+  Object.values(excludedForms).forEach(list => list.forEach(c => { if (!extras.includes(c)) extras.push(c); }));
   return Promise.all(characterDataToSort.map(async (char, idx) => {
     characterDataToSort[idx].img = await loadImage(imageURL(char.img));
-  }));
+  }).concat(extras.map(async (char) => {
+    char.img = await loadImage(imageURL(char.img));
+  })));
 }
 
 /**

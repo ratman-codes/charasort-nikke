@@ -649,5 +649,27 @@ a:visited {
 }
 
 /* quiet link under the buttons while sorting */
-.sorting.backhome { grid-column: 1 / 4; grid-row: 8; display: none; margin-top: 14px; text-align: center; font-size: 0.6875em; font-weight: normal; color: var(--muted); opacity: 0.45; text-decoration: none; cursor: pointer; transition: opacity 0.12s; }
+.sorting.backhome { grid-column: 1 / 4; grid-row: 9; display: none; margin-top: 14px; text-align: center; font-size: 0.6875em; font-weight: normal; color: var(--muted); opacity: 0.45; text-decoration: none; cursor: pointer; transition: opacity 0.12s; }
 .sorting.backhome:hover { opacity: 1; color: var(--accent); text-decoration: underline; }
+
+/* ---------- Other forms of the shown character, under the name ---------- */
+.sorter > .alts { grid-row: 8; display: none; width: var(--pw); min-height: 110px; margin: 2px auto 0; justify-content: center; align-items: flex-start; gap: 6px; }
+.sorter > .alts .thumb { position: relative; display: block; outline: none; cursor: default; }
+.sorter > .alts .thumb > img { width: 56px; height: 102px; object-fit: cover; display: block; opacity: 0.9; transition: opacity 0.12s;
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px); outline: 1px solid var(--line-soft); outline-offset: -1px; }
+.sorter > .alts .thumb:hover > img, .sorter > .alts .thumb:focus > img, .sorter > .alts .thumb.open > img { opacity: 1; }
+.sorter > .alts .preview { position: absolute; width: max-content; left: 50%; top: calc(100% + 8px); transform: translateX(-50%) translateY(-4px); z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 8px 7px; background: var(--card); border: 1px solid var(--line-soft);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28); opacity: 0; visibility: hidden; transition: opacity 0.14s, transform 0.14s; pointer-events: none;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+.sorter > .alts .preview img { width: 160px; max-width: none; height: 293px; object-fit: cover; display: block; }
+.sorter > .alts .preview b { font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; color: var(--fg); }
+.sorter > .alts .thumb:hover .preview, .sorter > .alts .thumb:focus .preview, .sorter > .alts .thumb.open .preview { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+/* right-hand previews open leftwards so they never run off the page edge */
+.sorter > .alts.right .preview { left: auto; right: 0; transform: translateX(0) translateY(-4px); }
+.sorter > .alts.right .thumb:hover .preview, .sorter > .alts.right .thumb:focus .preview, .sorter > .alts.right .thumb.open .preview { transform: translateX(0) translateY(0); }
+@media all and (max-width: 600px) {
+  .sorter > .alts { min-height: 78px; }
+  .sorter > .alts .thumb > img { width: 40px; height: 73px; }
+  .sorter > .alts .preview img { width: 120px; height: 220px; }
+}
