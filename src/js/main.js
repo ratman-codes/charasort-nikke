@@ -253,10 +253,44 @@ function computeExcludedForms() {
   });
 }
 
+/**
+ * Images shown in the two portrait slots once sorting is done, instead of the last battle.
+ * Drop files in src/assets/finish/ and list them here; with three or more, the slots rotate through them.
+ */
+const FINISH_IMAGES = ['src/assets/defaultL.gif', 'src/assets/defaultR.webp'];
+let finishTimer = null;
+let finishShown = false;
+function showFinishImages() {
+  if (finishShown) return;
+  finishShown = true;
+  const sides = ['left', 'right'];
+  const shown = {};
+  const pickNew = () => {
+    const pool = FINISH_IMAGES.filter(f => !Object.values(shown).includes(f));
+    const from = pool.length ? pool : FINISH_IMAGES;
+    return from[Math.floor(Math.random() * from.length)];
+  };
+  const set = (side, src, fade) => {
+    const img = document.querySelector(`.${side}.sort.image`);
+    shown[side] = src;
+    if (!fade) { img.src = src; return; }
+    img.style.opacity = 0;
+    setTimeout(() => { img.onload = () => { img.style.opacity = 1; img.onload = null; }; img.src = src; }, 350);
+  };
+  sides.forEach(s => set(s, pickNew(), false));
+  if (FINISH_IMAGES.length > 2) {
+    let turn = 0;
+    finishTimer = setInterval(() => set(sides[turn++ % 2], pickNew(), true), 7000);
+  }
+}
+
 /** Begin sorting. */
 function start() {
   characterDataToSort = selectCharacters();
   computeExcludedForms();
+  clearInterval(finishTimer);
+  finishShown = false;
+  document.querySelector('.sorter').classList.remove('done');
   undoStack = [];
   redoStack = [];
   updateUndoButtons();
@@ -586,6 +620,8 @@ function selectionSummary() {
 }
 
 function result(imageNum = defaultPortraitCount()) {
+  document.querySelector('.sorter').classList.add('done');
+  showFinishImages();
   document.querySelectorAll('.finished.button').forEach(el => el.style.display = 'flex');
   document.querySelector('.image.selector').style.display = 'block';
 

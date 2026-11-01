@@ -186,6 +186,13 @@ body {
 .sorter > .port:hover { transform: translateY(-2px); }
 .sorter > .port:hover::before { background: linear-gradient(165deg, var(--cyan), rgba(92, 200, 255, 0.35)); }
 
+/* finished: the portrait slots show the celebration images, not the last battle; no hover, no keys */
+.sorter.done > .port { cursor: default; pointer-events: none; }
+.sorter.done > .port:hover { transform: none; }
+.sorter.done > .port:hover::before { background: var(--line-soft); }
+.sorter.done > .port > img { object-fit: contain; transition: opacity 0.35s; }
+.sorter.done .kbd { display: none; }
+
 /* pick flash */
 .sorter > .port::after {
   content: "";
@@ -665,11 +672,11 @@ a:visited {
 .sorter > .alts .preview img { width: 160px; max-width: none; height: 293px; object-fit: cover; display: block; }
 .sorter > .alts .preview b { font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; color: var(--fg); }
 .sorter > .alts .thumb:hover .preview, .sorter > .alts .thumb:focus .preview, .sorter > .alts .thumb.open .preview { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-/* right-hand previews open leftwards so they never run off the page edge */
-.sorter > .alts.right .preview { left: auto; right: 0; transform: translateX(0) translateY(-4px); }
-.sorter > .alts.right .thumb:hover .preview, .sorter > .alts.right .thumb:focus .preview, .sorter > .alts.right .thumb.open .preview { transform: translateX(0) translateY(0); }
 @media all and (max-width: 600px) {
   .sorter > .alts { min-height: 78px; }
+  /* on phones, right-hand previews open leftwards so they never run off the screen edge */
+  .sorter > .alts.right .preview { left: auto; right: 0; transform: translateX(0) translateY(-4px); }
+  .sorter > .alts.right .thumb:hover .preview, .sorter > .alts.right .thumb:focus .preview, .sorter > .alts.right .thumb.open .preview { transform: translateX(0) translateY(0); }
   .sorter > .alts .thumb > img { width: 40px; height: 73px; }
   .sorter > .alts .preview img { width: 120px; height: 220px; }
 }
