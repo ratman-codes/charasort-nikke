@@ -321,7 +321,12 @@ function display() {
     return `<p title="${name}">${base}${sub ? `<small>${sub}</small>` : ''}</p>`;
   };
 
-  progressBar(`Battle ${battleNo} of ~${totalBattles}`, percent);
+  /**
+   * totalBattles is an upper bound on items placed, and one pick can place several, so the run
+   * ends well before it. Project the real total from the picks-per-item rate so far.
+   */
+  const projected = sortedNo > 0 ? Math.max(battleNo, Math.round(battleNo * totalBattles / sortedNo)) : totalBattles;
+  progressBar(`Battle ${battleNo} of ~${projected}`, percent);
 
   document.querySelector('.left.sort.image').src = leftChar.img;
   document.querySelector('.right.sort.image').src = rightChar.img;
