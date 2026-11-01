@@ -375,7 +375,7 @@ label:hover {
 .results .trow:last-child { border-bottom: 0; }
 .results .trow b { min-width: 2.4em; text-align: right; color: var(--muted); }
 .results .trow.tie b::before { content: "="; }
-.results .trow small { color: var(--muted); }
+.results .trow small { color: var(--muted); font-size: 11px; margin-left: 4px; }
 
 @media all and (max-width: 600px) {
   .results .col.pics { width: 118px; }
