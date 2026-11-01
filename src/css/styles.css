@@ -595,6 +595,22 @@ a:visited {
 .sorting.button, .finished.button { --btn-edge: var(--btn-edge-2); font-size: 0.9375em; font-weight: bold; gap: 2px; min-height: 64px; display: none; }
 .sorting.tie.button { --btn-edge: var(--cyan); }
 .finished.button { text-transform: none; letter-spacing: 0.04em; }
+/* Generate Image is the action most people want on the results screen: cyan edge, a caption, and a few pulses when the screen appears */
+.finished.getimg.button { --btn-edge: var(--cyan); background: linear-gradient(165deg, color-mix(in srgb, var(--cyan) 26%, var(--btn-bg-a)), color-mix(in srgb, var(--cyan) 8%, var(--btn-bg-b))); animation: getimgglow 3.2s ease-in-out infinite; overflow: hidden; }
+.finished.getimg.button::before { padding: 3px; }
+.finished.getimg.button .tag { border-color: var(--cyan); color: var(--cyan); }
+/* the two secondary result buttons step back so the primary one carries the weight */
+.finished.save.button, .finished.list.button { opacity: 0.82; }
+.finished.save.button:hover, .finished.list.button:hover { opacity: 1; }
+/* a small "PNG" download tag in the key-badge style, so the button reads as a file download without a caption */
+.finished.button .tag { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: auto; height: 20px; padding: 0 7px; border: 1px solid var(--kbd-border); border-radius: 3px; background: var(--kbd-bg); color: var(--kbd-fg); font: bold 10px/18px Arimo, Arial, "Liberation Sans", Helvetica, sans-serif; letter-spacing: 0.06em; text-transform: none; pointer-events: none; z-index: 2; }
+@keyframes getimgglow { 50% { filter: drop-shadow(0 0 7px color-mix(in srgb, var(--cyan) 60%, transparent)); } }
+/* a slow diagonal light sweep, every few seconds, like a game menu's primary option */
+.finished.getimg.button .sheen { position: absolute; inset: -20% -40%; pointer-events: none; z-index: 1; display: block !important;
+  background: linear-gradient(115deg, transparent 42%, color-mix(in srgb, #ffffff 45%, transparent) 50%, transparent 58%);
+  transform: translateX(-70%); animation: getimgsheen 3s ease-in-out infinite; }
+@keyframes getimgsheen { 0% { transform: translateX(-70%); } 45% { transform: translateX(70%); } 100% { transform: translateX(70%); } }
+@media (prefers-reduced-motion: reduce) { .finished.getimg.button, .finished.getimg.button .sheen { animation: none; } }
 .finished.button a { color: var(--cyan); }
 
 .presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 4px; }
@@ -631,3 +647,7 @@ a:visited {
   .sorting.button, .finished.button { min-height: 52px; font-size: 0.8125em; }
   .sorter > .text > p { font-size: 0.9375em; }
 }
+
+/* quiet link under the buttons while sorting */
+.sorting.backhome { grid-column: 1 / 4; grid-row: 8; display: none; margin-top: 14px; text-align: center; font-size: 0.6875em; font-weight: normal; color: var(--muted); opacity: 0.45; text-decoration: none; cursor: pointer; transition: opacity 0.12s; }
+.sorting.backhome:hover { opacity: 1; color: var(--accent); text-decoration: underline; }

@@ -18,27 +18,27 @@
     /* Apply the saved theme before the stylesheet paints, so there is no flash. */
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
-  <link rel="stylesheet" type="text/css" href="src/css/reset.css?v=20261101e">
-  <link rel="stylesheet" type="text/css" href="src/css/styles.css?v=20261101e">
+  <link rel="stylesheet" type="text/css" href="src/css/reset.css?v=20261101n">
+  <link rel="stylesheet" type="text/css" href="src/css/styles.css?v=20261101n">
 
-  <script src="src/js/data.js?v=20261101e"></script>
-  <script src="src/js/data/2025-01-05.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-02-22.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-04-08.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-04-14.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-04-26.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-06-26.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-07-24.js?v=20261101e"></script>  
-  <script src="src/js/data/2025-11-01.js?v=20261101e"></script>  
-  <script src="src/js/data/2026-04-20.js?v=20261101e"></script>  
-  <script src="src/js/data/2026-10-31.js?v=20261101e"></script>    
+  <script src="src/js/data.js?v=20261101n"></script>
+  <script src="src/js/data/2025-01-05.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-02-22.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-04-08.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-04-14.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-04-26.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-06-26.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-07-24.js?v=20261101n"></script>  
+  <script src="src/js/data/2025-11-01.js?v=20261101n"></script>  
+  <script src="src/js/data/2026-04-20.js?v=20261101n"></script>  
+  <script src="src/js/data/2026-10-31.js?v=20261101n"></script>    
 
-  <script src="src/js/html2canvas.min.js?v=20261101e"></script>
-  <script src="src/js/lz-string.min.js?v=20261101e"></script>
-  <script src="src/js/seedrandom.min.js?v=20261101e"></script>
-  <script src="src/js/main.js?v=20261101e"></script>
-  <script src="src/js/picker.js?v=20261101e"></script>
-  <script src="src/js/theme.js?v=20261101e" defer></script>
+  <script src="src/js/html2canvas.min.js?v=20261101n"></script>
+  <script src="src/js/lz-string.min.js?v=20261101n"></script>
+  <script src="src/js/seedrandom.min.js?v=20261101n"></script>
+  <script src="src/js/main.js?v=20261101n"></script>
+  <script src="src/js/picker.js?v=20261101n"></script>
+  <script src="src/js/theme.js?v=20261101n" defer></script>
 </head>
 
 <body>
@@ -64,13 +64,14 @@
         <div class="sorting save button"><span class="kbd wide">Enter</span>Save</div>
 
         <div class="finished save button">Generate Result URL</div>
-        <div class="finished getimg button">Generate Image</div>
+        <div class="finished getimg button" title="Saves a PNG of your results, ready to share"><span class="tag">&#8595; PNG</span>Generate Image<span class="sheen"></span></div>
         <div class="finished list button">Generate Text List</div>
 
         <div class="right port"><img src="src/assets/defaultR.webp" class="right sort image"><span class="kbd">D</span></div>
 
         <div class="left sort text"><p></p></div>
         <div class="right sort text"><p></p></div>
+        <a class="sorting backhome">Back to front page</a>
     </div>
 
     <div class="intro">

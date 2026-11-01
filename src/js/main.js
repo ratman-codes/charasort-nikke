@@ -62,6 +62,12 @@ function init() {
 
   document.querySelector('.clearsave').addEventListener('click', clearProgress);
 
+  /** Leaving mid-sort: progress is autosaved after every pick, so the start screen can resume it. */
+  document.querySelector('.sorting.backhome').addEventListener('click', () => {
+    const ok = window.confirm('Your progress is saved automatically after every pick, and Load Autosave on the front page will bring you right back here.\n\nBut if you start a new sort, this one is overwritten and the picks you made so far are gone for good. If you want to keep them, hit Save first and keep the URL.\n\nGo back to the front page?');
+    if (ok) window.location.href = `${location.protocol}//${sorterURL}`;
+  });
+
   /**
    * Keyboard controls. Primary: A / D pick, Space tie, Z undo, Enter save.
    * Alternates: arrow keys for pick and tie, Backspace for undo.
@@ -301,6 +307,7 @@ function start() {
     loading = false;
     document.querySelector('.loading.button').style.display = 'none';
     document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'flex');
+    document.querySelector('.sorting.backhome').style.display = 'block';
     document.querySelectorAll('.sort.text').forEach(el => el.style.display = 'block');
     display();
   });
@@ -543,6 +550,7 @@ function result(imageNum = defaultPortraitCount()) {
   document.querySelector('.image.selector').style.display = 'block';
 
   document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'none');
+  document.querySelector('.sorting.backhome').style.display = 'none';
   document.querySelectorAll('.sort.text').forEach(el => el.style.display = 'none');
   document.querySelector('.options').style.display = 'none';
   document.querySelector('.info').style.display = 'none';
@@ -561,7 +569,7 @@ function result(imageNum = defaultPortraitCount()) {
     <div class="summary">
       <div class="big">Results</div>
       <div class="meta"><b>${characterDataToSort.length}</b> Nikkes &middot; ${selectionSummary()} &middot; <b>${picks}</b> picks in <b>${msToReadableTime(timeTaken) || 'under a second'}</b> &middot; ${when}
-        &middot; <a href="${location.protocol}//${sorterURL}">Do another sorter?</a></div>
+        &middot; <a href="${location.protocol}//${sorterURL}" class="backlink">Back to front page</a></div>
     </div>`;
 
   const FONT = 'Arimo, Arial, "Liberation Sans", Helvetica, sans-serif';
@@ -628,6 +636,12 @@ function result(imageNum = defaultPortraitCount()) {
   }
   resultTable.querySelector('.band').innerHTML = cols;
   bandResults();
+
+  /** Leaving the results: remind people to grab the URL or image first. The result stays under "Load Last Result" until a new sort begins. */
+  resultTable.querySelector('.backlink').addEventListener('click', (ev) => {
+    const ok = window.confirm('Heads up: once you start a new sort, this result is gone.\n\nIf you want to keep it, grab the result URL or the PNG with the buttons above first.\n\nGo back to the front page?');
+    if (!ok) ev.preventDefault();
+  });
 }
 
 /** Split the wrapped rows of result columns into labelled bands, so a wrap never reads as the next column. */
@@ -805,7 +819,7 @@ function generateImage() {
     resetButton.insertAdjacentText('beforeend', 'Reset');
     resetButton.addEventListener('click', (event) => {
       imgButton.addEventListener('click', generateImage);
-      imgButton.innerHTML = 'Generate Image';
+      imgButton.innerHTML = '<span class="tag">&#8595; PNG</span>Generate Image<span class="sheen"></span>';
       event.stopPropagation();
     });
     imgButton.insertAdjacentElement('beforeend', resetButton);
