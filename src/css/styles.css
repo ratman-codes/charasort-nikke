@@ -475,8 +475,8 @@ a:visited {
 .filterreset { all: unset; cursor: pointer; font-size: 0.6875em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 2px 8px; border: 1px solid var(--line-soft); white-space: nowrap; }
 .filterreset:hover { color: var(--cyan); border-color: var(--cyan); }
 .filterreset:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
-.filterrows { padding: 8px 14px 18px; display: grid; grid-template-columns: 120px 1fr; row-gap: 8px; column-gap: 10px; align-items: center; }
-.flabel { font-size: 0.6875em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.filterrows { padding: 8px 14px 18px; display: grid; grid-template-columns: minmax(120px, max-content) 1fr; row-gap: 8px; column-gap: 10px; align-items: center; }
+.flabel { font-size: 0.6875em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; white-space: nowrap; padding-right: 6px; }
 .flabel.active { color: var(--fg); }
 .flabel.active::after { content: "ON"; font-size: 9px; letter-spacing: 0.1em; color: var(--cyan); border: 1px solid var(--cyan); padding: 1px 5px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
