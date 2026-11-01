@@ -573,7 +573,8 @@ function result(imageNum = defaultPortraitCount()) {
   };
   const row = (char, rank, tie) => {
     const [base, ...rest] = char.name.split(': ');
-    return `<div class="trow ${tie ? 'tie' : ''}"><b>${rank}</b><span>${base}${rest.length ? ` <small>${rest.join(': ')}</small>` : ''}</span></div>`;
+    /* alt name is a sibling, not nested: the bundled html2canvas mis-sizes nested inline text */
+    return `<div class="trow ${tie ? 'tie' : ''}"><b>${rank}</b><span>${base}</span>${rest.length ? `<span class="alt">${rest.join(': ')}</span>` : ''}</div>`;
   };
 
   /** Walk the final order, working out ranks (ties share a rank). */
