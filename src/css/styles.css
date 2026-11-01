@@ -556,10 +556,10 @@ a:visited {
 .finished.button { text-transform: none; letter-spacing: 0.04em; }
 .finished.button a { color: var(--cyan); }
 
-.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+.presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 4px; }
 .preset {
   --edge: var(--btn-edge-2);
-  all: unset; box-sizing: border-box; position: relative; cursor: pointer; padding: 12px 36px 12px 14px;
+  all: unset; box-sizing: border-box; position: relative; cursor: pointer; padding: 12px 26px 12px 12px;
   color: var(--btn-ink); background: linear-gradient(165deg, var(--btn-bg-a), var(--btn-bg-b));
   clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
   display: flex; flex-direction: column; gap: 3px; transition: filter 0.12s;
@@ -578,7 +578,7 @@ a:visited {
   background: linear-gradient(165deg, color-mix(in srgb, var(--btn-edge) 28%, var(--btn-bg-a)), var(--btn-bg-b));
 }
 .preset[aria-pressed="true"]::before { padding: 3px; }
-.preset[aria-pressed="true"]::after { content: "\2713"; position: absolute; top: 10px; right: 14px; color: var(--cyan); font-weight: bold; }
+.preset[aria-pressed="true"]::after { content: "\2713"; position: absolute; top: 10px; right: 10px; color: var(--cyan); font-weight: bold; }
 .preset:hover { filter: var(--btn-hover, brightness(0.96)); }
 .preset:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
 .preset .t { text-transform: uppercase; letter-spacing: 0.12em; font-weight: bold; font-size: 0.875em; }

@@ -205,8 +205,9 @@ function syncPicker() {
 
 /** Presets. `state(opt)` gives the wanted checked value for a plain option. */
 const PICKER_PRESETS = [
-  { key: 'quick', title: 'Quick ranking', desc: 'Base forms only. The default.', state: opt => !!opt.checked },
-  { key: 'all',   title: 'Everything',    desc: 'Every form, every unit.',       state: () => false },
+  { key: 'quick',   title: 'Quick ranking', desc: 'Base forms, no collabs or R units.', state: opt => !!opt.checked || opt.key === 'collab' || opt.key === 'rikker' },
+  { key: 'default', title: 'Default',       desc: 'Base forms only.',                   state: opt => !!opt.checked },
+  { key: 'all',     title: 'Everything',    desc: 'Every form, every unit.',             state: () => false },
 ];
 
 function presetState(pr) {
