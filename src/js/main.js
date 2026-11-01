@@ -564,17 +564,26 @@ function result(imageNum = defaultPortraitCount()) {
         &middot; <a href="${location.protocol}//${sorterURL}">Do another sorter?</a></div>
     </div>`;
 
+  const FONT = 'Arimo, Arial, "Liberation Sans", Helvetica, sans-serif';
   const tile = (char, rank, tie) => {
     const [base, ...rest] = char.name.split(': ');
-    const sub = rest.join(': ');
+    const sub = rest.length ? fitText(rest.join(': '), `11px ${FONT}`, 82) : '';
     return `<div class="tile ${rank <= 5 ? 'p' + rank : ''}"><div class="rk ${tie ? 'tie' : ''}">${rank}</div>
       <div class="pic"><img src="${char.img}" alt=""></div>
       <div class="nm" title="${char.name}">${base}${sub ? `<small>${sub}</small>` : ''}</div></div>`;
   };
+  /** Text rows are 200px wide: rank takes ~40px, leaving ~144px. Names are trimmed in code rather than clipped by CSS, which the bundled html2canvas handles badly. */
+  const ROW_TEXT = 134;
   const row = (char, rank, tie) => {
     const [base, ...rest] = char.name.split(': ');
+    const name = fitText(base, `12px ${FONT}`, ROW_TEXT);
+    let alt = '';
+    if (rest.length) {
+      const room = ROW_TEXT - textWidth(name, `12px ${FONT}`) - 6;
+      if (room > 30) alt = fitText(rest.join(': '), `11px ${FONT}`, room);
+    }
     /* alt name is a sibling, not nested: the bundled html2canvas mis-sizes nested inline text */
-    return `<div class="trow ${tie ? 'tie' : ''}"><b>${rank}</b><span>${base}</span>${rest.length ? `<span class="alt">${rest.join(': ')}</span>` : ''}</div>`;
+    return `<div class="trow ${tie ? 'tie' : ''}" title="${char.name}"><b>${rank}</b><span>${name}</span>${alt ? `<span class="alt">${alt}</span>` : ''}</div>`;
   };
 
   /** Walk the final order, working out ranks (ties share a rank). */
@@ -776,7 +785,8 @@ function generateImage() {
   const results = document.querySelector('.results');
   results.classList.add('export');
   bandResults();
-  html2canvas(results, { backgroundColor: getComputedStyle(document.body).backgroundColor, width: results.scrollWidth, windowWidth: results.scrollWidth + 64 }).finally(() => {
+  /* scale is pinned to 2: at 1x the bundled html2canvas drops the spaces between words */
+  html2canvas(results, { backgroundColor: getComputedStyle(document.body).backgroundColor, width: results.scrollWidth, windowWidth: results.scrollWidth + 64, scale: 2 }).finally(() => {
     results.classList.remove('export');
     bandResults();
   }).then(canvas => new Promise((resolve, reject) => {
@@ -1032,6 +1042,22 @@ function msToReadableTime (milliseconds) {
  * @param {string} font Font applied to text. Example "12px Arial".
  * @param {number} width Width of desired width in px.
  */
+/** Trim text with an ellipsis so it fits `width` px when drawn in `font` (a CSS font shorthand, e.g. 'bold 11px Arimo'). */
+function fitText(text, font, width) {
+  const canvas = fitText.canvas || (fitText.canvas = document.createElement('canvas'));
+  const ctx = canvas.getContext('2d');
+  ctx.font = font;
+  if (ctx.measureText(text).width <= width) return text;
+  let t = text;
+  while (t.length > 1 && ctx.measureText(t + '…').width > width) t = t.slice(0, -1);
+  return t.trimEnd() + '…';
+}
+function textWidth(text, font) {
+  const canvas = fitText.canvas || (fitText.canvas = document.createElement('canvas'));
+  const ctx = canvas.getContext('2d'); ctx.font = font;
+  return ctx.measureText(text).width;
+}
+
 function reduceTextWidth(text, font, width) {
   const canvas = reduceTextWidth.canvas || (reduceTextWidth.canvas = document.createElement("canvas"));
   const context = canvas.getContext("2d");
