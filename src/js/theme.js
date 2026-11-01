@@ -1,14 +1,14 @@
 /**
- * Light / dark toggle. With no saved choice the page follows the OS setting; the button
- * flips to the opposite of whatever is showing and remembers it in localStorage.
+ * Light / dark toggle. Light by default; the button flips to the opposite of whatever is
+ * showing and remembers the choice in localStorage.
  */
 (function () {
   const root = document.documentElement;
   const button = document.querySelector('.theme.toggle');
   if (!button) return;
 
-  const prefersDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const current = () => root.dataset.theme || (prefersDark() ? 'dark' : 'light');
+  /** Light unless the user has switched to dark; the OS setting is not consulted. */
+  const current = () => root.dataset.theme || 'light';
 
   const label = () => {
     button.textContent = current() === 'dark' ? '☀ Light mode' : '☾ Dark mode';
@@ -21,6 +21,5 @@
     label();
   });
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
   label();
 })();
