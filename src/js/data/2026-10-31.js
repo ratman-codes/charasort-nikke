@@ -935,7 +935,7 @@ dataSet[dataSetVersion].characterData = [
     }
   },
   {
-    name: "Modernia",
+    name: "Modernia (Marian)",
     img: "src/assets/portraits/modernia.webp",
     opts: {
       rarity: ["SSR"],
