@@ -1,4 +1,4 @@
-dataSetVersion = "2025-01-05"; // Change this when creating a new data set version. YYYY-MM-DD format.
+dataSetVersion = document.currentScript.src.match(/(\d{4}-\d{2}-\d{2})\.js/)[1]; // Version key is taken from this file's name (YYYY-MM-DD.js). Do not edit.
 dataSet[dataSetVersion] = {};
 
 // EXCLUDE

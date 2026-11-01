@@ -32,19 +32,6 @@ let battleNo        = 1;
 let sortedNo        = 0;
 let pointer         = 0;
 
-/** A copy of intermediate sorter data is recorded for undo() purposes. */
-let sortedIndexListPrev = [];
-let recordDataListPrev  = [];
-let parentIndexListPrev = [];
-let tiedDataListPrev    = [];
-
-let leftIndexPrev       = 0;
-let leftInnerIndexPrev  = 0;
-let rightIndexPrev      = 0;
-let rightInnerIndexPrev = 0;
-let battleNoPrev        = 1;
-let sortedNoPrev        = 0;
-let pointerPrev         = 0;
 
 /** Miscellaneous sorter data that doesn't need to be saved for undo(). */
 let finalCharacters = [];
@@ -64,7 +51,9 @@ function init() {
   document.querySelector('.right.sort.image').addEventListener('click', () => pick('right'));
   
   document.querySelector('.sorting.tie.button').addEventListener('click', () => pick('tie'));
-  document.querySelector('.sorting.undo.button').addEventListener('click', undo);
+  document.querySelector('.sorting.undo.button').addEventListener('click', (ev) => {
+    if (ev.target.closest('.redo-half')) redo(); else undo();
+  });
   document.querySelector('.sorting.save.button').addEventListener('click', () => saveProgress('Progress'));
   
   document.querySelector('.finished.save.button').addEventListener('click', () => saveProgress('Last Result'));
@@ -73,31 +62,42 @@ function init() {
 
   document.querySelector('.clearsave').addEventListener('click', clearProgress);
 
-  /** Define keyboard controls (up/down/left/right vimlike k/j/h/l). */
-  document.addEventListener('keypress', (ev) => {
+  /**
+   * Keyboard controls. Primary: A / D pick, Space tie, Z undo, Enter save.
+   * Alternates: arrow keys for pick and tie, Backspace for undo.
+   * keydown (not keypress) so arrows and Backspace register; page scrolling on Space / arrows is suppressed while sorting.
+   */
+  document.addEventListener('keydown', (ev) => {
+    if (ev.ctrlKey || ev.altKey || ev.metaKey) return;
+    if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+    const key = ev.key.length === 1 ? ev.key.toLowerCase() : ev.key;
+
     /** If sorting is in progress. */
     if (timestamp && !timeTaken && !loading && choices.length === battleNo - 1) {
-      switch(ev.key) {
-        case 's': case '3':                   saveProgress('Progress'); break;
-        case 'h': case 'ArrowLeft':           pick('left'); break;
-        case 'l': case 'ArrowRight':          pick('right'); break;
-        case 'k': case '1': case 'ArrowUp':   pick('tie'); break;
-        case 'j': case '2': case 'ArrowDown': undo(); break;
+      if ([' ', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', 'Backspace'].includes(key)) ev.preventDefault();
+      if (ev.repeat) return;
+      switch (key) {
+        case 'a': case 'ArrowLeft':         pick('left'); break;
+        case 'd': case 'ArrowRight':        pick('right'); break;
+        case ' ': case 'ArrowDown':         pick('tie'); break;
+        case 'z': case 'Backspace':         undo(); break;
+        case 'x':                           redo(); break;
+        case 'Enter':                       saveProgress('Progress'); break;
         default: break;
       }
     }
     /** If sorting has ended. */
     else if (timeTaken && choices.length === battleNo - 1) {
-      switch(ev.key) {
-        case 'k': case '1': saveProgress('Last Result'); break;
-        case 'j': case '2': generateImage(); break;
-        case 's': case '3': generateTextList(); break;
+      switch (key) {
+        case '1': saveProgress('Last Result'); break;
+        case '2': generateImage(); break;
+        case '3': generateTextList(); break;
         default: break;
       }
     } else { // If sorting hasn't started yet.
-      switch(ev.key) {
-        case '1': case 's': case 'Enter': start(); break;
-        case '2': case 'l':               loadProgress(); break;
+      switch (key) {
+        case '1': case 'Enter': start(); break;
+        case '2': case 'l':     loadProgress(); break;
         default: break;
       }
     }
@@ -106,25 +106,33 @@ function init() {
   document.querySelector('.image.selector').insertAdjacentElement('beforeend', document.createElement('select'));
 
   /** Initialize image quantity selector for results. */
-  for (let i = 0; i <= 250; i+=10) {
+  [0, 5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 250].forEach(i => {
     const select = document.createElement('option');
     select.value = i;
     select.text = i;
-    if (i === 20) { select.selected = 'selected'; }
     document.querySelector('.image.selector > select').insertAdjacentElement('beforeend', select);
-  }
+  });
 
   document.querySelector('.image.selector > select').addEventListener('input', (e) => {
-    const imageNum = e.target.options[e.target.selectedIndex].value;
-    result(Number(imageNum));
+    const imageNum = Number(e.target.value);
+    try { localStorage.setItem('portraitCount', String(imageNum)); } catch (err) {}
+    result(imageNum);
+  });
+
+  /** Re-flow the result columns into bands when the window changes size. */
+  let resultResizeTimer = 0;
+  window.addEventListener('resize', () => {
+    if (!timeTaken) return;
+    clearTimeout(resultResizeTimer);
+    resultResizeTimer = setTimeout(() => bandResults(), 150);
   });
 
   /** Show load button if save data exists. */
   if (storedSaveType) {
     document.querySelector('.starting.load.button > span').insertAdjacentText('beforeend', storedSaveType);
     document.querySelectorAll('.starting.button').forEach(el => {
-      el.style['grid-row'] = 'span 3';
-      el.style.display = 'block';
+      el.style['grid-row'] = el.classList.contains('load') ? 'span 2' : 'span 4';
+      el.style.display = 'flex';
     });
   }
 
@@ -132,12 +140,25 @@ function init() {
 
   /** Decode query string if available. */
   if (window.location.search.slice(1) !== '') decodeQuery();
+
+  /** Debug: open the page with #finish to run a whole sort with random picks and land on the results. */
+  document.querySelector('.debugfinish').addEventListener('click', debugFinish);
+  if (window.location.hash === '#finish') debugFinish();
 }
 
-/** Begin sorting. */
-function start() {
-  /** Copy data into sorting array to filter. */
-  characterDataToSort = characterData.slice(0);
+/** Debug helper: start (if needed), then auto-pick at random until the results screen shows. */
+async function debugFinish() {
+  if (!timestamp) start();
+  while (loading) { await new Promise(r => setTimeout(r, 50)); }
+  let guard = 0;
+  while (!timeTaken && guard++ < 20000) {
+    pick(['left', 'right', 'tie'][Math.floor(Math.random() * 3)]);
+  }
+}
+
+/** Read the option checkboxes and return the filtered character list. Also records optTaken/optStr/suboptStr for save data. */
+function selectCharacters() {
+  let list = characterData.slice(0);
 
   /** Check selected options and convert to boolean array form. */
   optTaken = [];
@@ -183,15 +204,25 @@ function start() {
           if (subBool) { subList.push(options[index].sub[subIndex].key); }
           return subList;
         }, []);
-        characterDataToSort = characterDataToSort.filter(char => {
+        list = list.filter(char => {
           if (!(opt.key in char.opts)) console.warn(`Warning: ${opt.key} not set for ${char.name}.`);
           return opt.key in char.opts && char.opts[opt.key].some(key => subArray.includes(key));
         });
       }
     } else if (optTaken[index]) {
-      characterDataToSort = characterDataToSort.filter(char => !char.opts[opt.key]);
+      list = list.filter(char => !char.opts[opt.key]);
     }
   });
+
+  return list;
+}
+
+/** Begin sorting. */
+function start() {
+  characterDataToSort = selectCharacters();
+  undoStack = [];
+  redoStack = [];
+  updateUndoButtons();
 
   if (characterDataToSort.length < 2) {
     alert('Cannot sort with less than two characters. Please reselect.');
@@ -259,6 +290,8 @@ function start() {
 
   /** Disable all checkboxes and hide/show appropriate parts while we preload the images. */
   document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.disabled = true);
+  document.querySelectorAll('.intro, .picker, .morefilters, .selection, .info').forEach(el => el.hidden = true);
+  document.querySelector('.sorter').classList.add('live');
   document.querySelectorAll('.starting.button').forEach(el => el.style.display = 'none');
   document.querySelector('.loading.button').style.display = 'block';
   document.querySelector('.progress').style.display = 'block';
@@ -267,7 +300,7 @@ function start() {
   preloadImages().then(() => {
     loading = false;
     document.querySelector('.loading.button').style.display = 'none';
-    document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'flex');
     document.querySelectorAll('.sort.text').forEach(el => el.style.display = 'block');
     display();
   });
@@ -281,13 +314,14 @@ function display() {
   const leftChar        = characterDataToSort[leftCharIndex];
   const rightChar       = characterDataToSort[rightCharIndex];
 
+  /** "Scarlet: Black Shadow" becomes the name on one line and the alt name in small type below. */
   const charNameDisp = name => {
-    const charName = reduceTextWidth(name, 'Arial 12.8px', 220);
-    const charTooltip = name !== charName ? name : '';
-    return `<p title="${charTooltip}">${charName}</p>`;
+    const [base, ...rest] = name.split(': ');
+    const sub = rest.join(': ');
+    return `<p title="${name}">${base}${sub ? `<small>${sub}</small>` : ''}</p>`;
   };
 
-  progressBar(`Battle No. ${battleNo}`, percent);
+  progressBar(`Battle ${battleNo} of ~${totalBattles}`, percent);
 
   document.querySelector('.left.sort.image').src = leftChar.img;
   document.querySelector('.right.sort.image').src = rightChar.img;
@@ -317,18 +351,18 @@ function pick(sortType) {
   if ((timeTaken && choices.length === battleNo - 1) || loading) { return; }
   else if (!timestamp) { return start(); }
 
-  sortedIndexListPrev = sortedIndexList.slice(0);
-  recordDataListPrev  = recordDataList.slice(0);
-  parentIndexListPrev = parentIndexList.slice(0);
-  tiedDataListPrev    = tiedDataList.slice(0);
+  /** Flash the chosen side (both on a tie) so each pick is visibly acknowledged. */
+  const flash = side => {
+    const el = document.querySelector(`.port.${side}`);
+    if (!el) return;
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  };
+  if (sortType === 'left' || sortType === 'tie') flash('left');
+  if (sortType === 'right' || sortType === 'tie') flash('right');
 
-  leftIndexPrev       = leftIndex;
-  leftInnerIndexPrev  = leftInnerIndex;
-  rightIndexPrev      = rightIndex;
-  rightInnerIndexPrev = rightInnerIndex;
-  battleNoPrev        = battleNo;
-  sortedNoPrev        = sortedNo;
-  pointerPrev         = pointer;
+  pushUndo(sortType);
+  redoStack = [];
+  updateUndoButtons();
 
   /** 
    * For picking 'left' or 'right':
@@ -424,8 +458,10 @@ function pick(sortType) {
   if (leftIndex < 0) {
     timeTaken = timeTaken || new Date().getTime() - timestamp;
 
-    progressBar(`Battle No. ${battleNo} - Completed!`, 100);
+    progressBar('Completed!', 100);
 
+    /** Save the finished run silently, so "Load Last Result" brings the results back rather than the final battle. */
+    saveProgress('Last Result', true);
     result();
   } else {
     battleNo++;
@@ -468,48 +504,84 @@ function progressBar(indicator, percentage) {
  * 
  * @param {number} [imageNum=3] Number of images to display. Defaults to 3.
  */
-function result(imageNum = 20) {
-  document.querySelectorAll('.finished.button').forEach(el => el.style.display = 'block');
+/**
+ * How many portraits to show. The user's dropdown choice is remembered; before they ever
+ * touch it, the count follows the window width (phones 10, laptops 20, wide screens 30).
+ */
+function defaultPortraitCount() {
+  try {
+    const saved = localStorage.getItem('portraitCount');
+    if (saved !== null && saved !== '') return Number(saved);
+  } catch (err) {}
+  const w = window.innerWidth;
+  return w < 700 ? 10 : w < 1500 ? 20 : 30;
+}
+
+/** One-line description of what was ranked, from the option checkboxes. */
+function selectionSummary() {
+  const on = key => { const el = document.getElementById(`cb-${key}`); return el ? el.checked : null; };
+  const parts = [];
+  const alts = ['SSRalt', 'SRalt', 'overspecbase'].map(on).filter(v => v !== null);
+  if (alts.length && alts.every(Boolean)) parts.push('base forms only');
+  else if (alts.length && alts.every(v => !v)) parts.push('all forms');
+  else if (alts.length) parts.push('mixed forms');
+  if (on('collab')) parts.push('no collabs');
+  if (on('rikker')) parts.push('no R units');
+  if (on('aprilfools')) parts.push('no April Fools');
+  const groups = options.filter(opt => 'sub' in opt && document.getElementById(`cbgroup-${opt.key}`).checked)
+    .map(opt => opt.name.replace(/^Filter by /, '').toLowerCase() + ' filter');
+  return parts.concat(groups).join(', ');
+}
+
+function result(imageNum = defaultPortraitCount()) {
+  document.querySelectorAll('.finished.button').forEach(el => el.style.display = 'flex');
   document.querySelector('.image.selector').style.display = 'block';
-  document.querySelector('.time.taken').style.display = 'block';
-  
+
   document.querySelectorAll('.sorting.button').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.sort.text').forEach(el => el.style.display = 'none');
   document.querySelector('.options').style.display = 'none';
   document.querySelector('.info').style.display = 'none';
 
-  const header = '<div class="result head"><div class="left">Order</div><div class="right">Name</div></div>';
-  const timeStr = `This sorter was completed on ${new Date(timestamp + timeTaken).toString()} and took ${msToReadableTime(timeTaken)}. <a href="${location.protocol}//${sorterURL}">Do another sorter?</a>`;
-  const imgRes = (char, num) => {
-    const charName = reduceTextWidth(char.name, 'Arial 12px', 160);
-    const charTooltip = char.name !== charName ? char.name : '';
-    return `<div class="result image"><div class="left"><span>${num}</span></div><div class="right"><img src="${char.img}"><div><span title="${charTooltip}">${charName}</span></div></div></div>`;
+  const select = document.querySelector('.image.selector > select');
+  if (![...select.options].some(o => Number(o.value) === imageNum)) {
+    const extra = document.createElement('option'); extra.value = imageNum; extra.text = imageNum;
+    select.appendChild(extra);
   }
-  const res = (char, num) => {
-    const charName = reduceTextWidth(char.name, 'Arial 12px', 160);
-    const charTooltip = char.name !== charName ? char.name : '';
-    return `<div class="result"><div class="left">${num}</div><div class="right"><span title="${charTooltip}">${charName}</span></div></div>`;
-  }
+  select.value = String(imageNum);
 
-  let rankNum       = 1;
-  let tiedRankNum   = 1;
-  let imageDisplay  = imageNum;
+  const finished = new Date(timestamp + timeTaken);
+  const when = finished.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  const picks = choices.length;
+  const summary = `
+    <div class="summary">
+      <div class="big">Results</div>
+      <div class="meta"><b>${characterDataToSort.length}</b> Nikkes &middot; ${selectionSummary()} &middot; <b>${picks}</b> picks in <b>${msToReadableTime(timeTaken) || 'under a second'}</b> &middot; ${when}
+        &middot; <a href="${location.protocol}//${sorterURL}">Do another sorter?</a></div>
+    </div>`;
 
+  const tile = (char, rank, tie) => {
+    const [base, ...rest] = char.name.split(': ');
+    const sub = rest.join(': ');
+    return `<div class="tile ${rank <= 5 ? 'p' + rank : ''}"><div class="rk ${tie ? 'tie' : ''}">${rank}</div>
+      <div class="pic"><img src="${char.img}" alt=""></div>
+      <div class="nm" title="${char.name}">${base}${sub ? `<small>${sub}</small>` : ''}</div></div>`;
+  };
+  const row = (char, rank, tie) => {
+    const [base, ...rest] = char.name.split(': ');
+    return `<div class="trow ${tie ? 'tie' : ''}"><b>${rank}</b><span>${base}${rest.length ? ` <small>${rest.join(': ')}</small>` : ''}</span></div>`;
+  };
+
+  /** Walk the final order, working out ranks (ties share a rank). */
+  let rankNum = 1;
+  let tiedRankNum = 1;
   const finalSortedIndexes = sortedIndexList[0].slice(0);
-  const resultTable = document.querySelector('.results');
-  const timeElem = document.querySelector('.time.taken');
-
-  resultTable.innerHTML = header;
-  timeElem.innerHTML = timeStr;
+  const entries = [];
+  finalCharacters = [];
 
   characterDataToSort.forEach((val, idx) => {
     const characterIndex = finalSortedIndexes[idx];
     const character = characterDataToSort[characterIndex];
-    if (imageDisplay-- > 0) {
-      resultTable.insertAdjacentHTML('beforeend', imgRes(character, rankNum));
-    } else {
-      resultTable.insertAdjacentHTML('beforeend', res(character, rankNum));
-    }
+    entries.push({ character, rank: rankNum });
     finalCharacters.push({ rank: rankNum, name: character.name });
 
     if (idx < characterDataToSort.length - 1) {
@@ -521,28 +593,114 @@ function result(imageNum = 20) {
       }
     }
   });
+  const rankCount = {};
+  entries.forEach(e => rankCount[e.rank] = (rankCount[e.rank] || 0) + 1);
+
+  /** Portrait columns of five, then text columns sized to match. */
+  const ROWS = 5;
+  const pics = entries.slice(0, imageNum), rest = entries.slice(imageNum);
+  let cols = '';
+  for (let i = 0; i < pics.length; i += ROWS) {
+    cols += `<div class="col pics">${pics.slice(i, i + ROWS).map(e => tile(e.character, e.rank, rankCount[e.rank] > 1)).join('')}</div>`;
+  }
+  const resultTable = document.querySelector('.results');
+  resultTable.innerHTML = summary + `<div class="grid cols"><div class="band">${cols}</div></div>`;
+
+  const picCol = resultTable.querySelector('.col.pics');
+  const perText = picCol ? Math.max(5, Math.floor((picCol.offsetHeight - 16) / 22)) : 40;
+  for (let i = 0; i < rest.length; i += perText) {
+    cols += `<div class="col text">${rest.slice(i, i + perText).map(e => row(e.character, e.rank, rankCount[e.rank] > 1)).join('')}</div>`;
+  }
+  resultTable.querySelector('.band').innerHTML = cols;
+  bandResults();
+}
+
+/** Split the wrapped rows of result columns into labelled bands, so a wrap never reads as the next column. */
+function bandResults() {
+  const grid = document.querySelector('.results .grid');
+  if (!grid) return;
+  const cols = [...grid.querySelectorAll('.col')];
+  grid.innerHTML = `<div class="band"></div>`;
+  const first = grid.firstElementChild;
+  cols.forEach(c => first.appendChild(c));
+
+  const groups = []; let top = -1;
+  cols.forEach(c => { if (c.offsetTop !== top) { top = c.offsetTop; groups.push([]); } groups[groups.length - 1].push(c); });
+  if (groups.length < 2) return;
+
+  grid.innerHTML = '';
+  groups.forEach((g, i) => {
+    if (i > 0) {
+      const from = g[0].querySelector('.rk, .trow b'), to = g[g.length - 1].querySelector('.tile:last-child .rk, .trow:last-child b');
+      const head = document.createElement('div');
+      head.className = 'bandhead';
+      head.textContent = `${from.textContent} – ${to.textContent}`;
+      grid.appendChild(head);
+    }
+    const band = document.createElement('div');
+    band.className = 'band';
+    g.forEach(c => band.appendChild(c));
+    grid.appendChild(band);
+  });
 }
 
 /** Undo previous choice. */
+/** Snapshot of everything a pick changes. Kept on a stack so Undo can step back as far as the run started. */
+let undoStack = [];
+let redoStack = [];   /* picks that were undone, newest last; any new pick clears it */
+const UNDO_LIMIT = 2000;
+
+function pushUndo(sortType) {
+  undoStack.push({
+    sortType,
+    sortedIndexList: sortedIndexList.map(a => a.slice(0)),
+    recordDataList:  recordDataList.slice(0),
+    parentIndexList: parentIndexList.slice(0),
+    tiedDataList:    tiedDataList.slice(0),
+    leftIndex, leftInnerIndex, rightIndex, rightInnerIndex, battleNo, sortedNo, pointer,
+    choicesLen: choices.length,
+  });
+  if (undoStack.length > UNDO_LIMIT) undoStack.shift();
+}
+
 function undo() {
-  if (timeTaken) { return; }
+  if (timeTaken || !undoStack.length) { return; }
+  const s = undoStack.pop();
 
-  choices = battleNo === battleNoPrev ? choices : choices.slice(0, -1);
+  choices = choices.slice(0, s.choicesLen);
 
-  sortedIndexList = sortedIndexListPrev.slice(0);
-  recordDataList  = recordDataListPrev.slice(0);
-  parentIndexList = parentIndexListPrev.slice(0);
-  tiedDataList    = tiedDataListPrev.slice(0);
+  sortedIndexList = s.sortedIndexList;
+  recordDataList  = s.recordDataList;
+  parentIndexList = s.parentIndexList;
+  tiedDataList    = s.tiedDataList;
 
-  leftIndex       = leftIndexPrev;
-  leftInnerIndex  = leftInnerIndexPrev;
-  rightIndex      = rightIndexPrev;
-  rightInnerIndex = rightInnerIndexPrev;
-  battleNo        = battleNoPrev;
-  sortedNo        = sortedNoPrev;
-  pointer         = pointerPrev;
+  leftIndex       = s.leftIndex;
+  leftInnerIndex  = s.leftInnerIndex;
+  rightIndex      = s.rightIndex;
+  rightInnerIndex = s.rightInnerIndex;
+  battleNo        = s.battleNo;
+  sortedNo        = s.sortedNo;
+  pointer         = s.pointer;
 
+  redoStack.push(s.sortType);
+  updateUndoButtons();
   display();
+}
+
+/** Re-apply the most recently undone pick. */
+function redo() {
+  if (timeTaken || !redoStack.length || loading) { return; }
+  const rest = redoStack.slice(0, -1);
+  const sortType = redoStack[redoStack.length - 1];
+  pick(sortType);           // pick() clears redoStack, so put the rest back afterwards
+  redoStack = rest;
+  updateUndoButtons();
+}
+
+/** Show the Redo half of the Undo button only while there is something to redo. */
+function updateUndoButtons() {
+  const btn = document.querySelector('.sorting.undo.button');
+  if (btn) btn.classList.toggle('has-redo', redoStack.length > 0);
 }
 
 /** 
@@ -550,13 +708,13 @@ function undo() {
  * 
  * @param {'Autosave'|'Progress'|'Last Result'} saveType
 */
-function saveProgress(saveType) {
+function saveProgress(saveType, silent = false) {
   const saveData = generateSavedata();
 
   localStorage.setItem(`${sorterURL}_saveData`, saveData);
   localStorage.setItem(`${sorterURL}_saveType`, saveType);
 
-  if (saveType !== 'Autosave') {
+  if (saveType !== 'Autosave' && !silent) {
     const saveURL = `${location.protocol}//${sorterURL}?${saveData}`;
     const inProgressText = 'You may click Load Progress after this to resume, or use this URL.';
     const finishedText = 'You may use this URL to share this result, or click Load Last Result to view it again.';
@@ -582,6 +740,7 @@ function clearProgress() {
 
   localStorage.removeItem(`${sorterURL}_saveData`);
   localStorage.removeItem(`${sorterURL}_saveType`);
+  localStorage.removeItem('portraitCount');
 
   document.querySelectorAll('.starting.start.button').forEach(el => el.style['grid-row'] = 'span 6');
   document.querySelectorAll('.starting.load.button').forEach(el => el.style.display = 'none');
@@ -591,15 +750,41 @@ function generateImage() {
   const timeFinished = timestamp + timeTaken;
   const tzoffset = (new Date()).getTimezoneOffset() * 60000;
   const filename = 'sort-' + (new Date(timeFinished - tzoffset)).toISOString().slice(0, -5).replace('T', '(') + ').png';
+  const imgButton = document.querySelector('.finished.getimg.button');
 
-  html2canvas(document.querySelector('.results')).then(canvas => {
-    const dataURL = canvas.toDataURL();
-    const imgButton = document.querySelector('.finished.getimg.button');
+  /** Opened from disk, browsers refuse to read local images back out of a canvas. Say so plainly. */
+  if (location.protocol === 'file:') {
+    imgButton.innerHTML = 'Image export only works on the live site or a local web server, not when index.html is opened from disk';
+    return;
+  }
+
+  /** Show that something is happening: a wide results grid can take a few seconds to render. */
+  imgButton.removeEventListener('click', generateImage);
+  imgButton.innerHTML = 'Generating…';
+
+  /**
+   * Lay the results out as one wide band for the capture, so the image never wraps even if the
+   * window did, then put the on-screen layout back. The page background is painted in so dark
+   * mode results stay readable.
+   */
+  const results = document.querySelector('.results');
+  results.classList.add('export');
+  bandResults();
+  html2canvas(results, { backgroundColor: getComputedStyle(document.body).backgroundColor, width: results.scrollWidth, windowWidth: results.scrollWidth + 64 }).finally(() => {
+    results.classList.remove('export');
+    bandResults();
+  }).then(canvas => new Promise((resolve, reject) => {
+    /** A blob URL instead of a data URL: browsers cap data-URL downloads at a few MB, which a wide results image exceeds. */
+    canvas.toBlob(blob => blob ? resolve(URL.createObjectURL(blob)) : reject(new Error('canvas could not be encoded')), 'image/png');
+  })).then(blobURL => {
     const resetButton = document.createElement('a');
 
-    imgButton.removeEventListener('click', generateImage);
+    /** Start the download straight away, and leave a link in case the browser blocked it. */
+    const auto = document.createElement('a');
+    auto.href = blobURL; auto.download = filename; document.body.appendChild(auto); auto.click(); auto.remove();
+
     imgButton.innerHTML = '';
-    imgButton.insertAdjacentHTML('beforeend', `<a href="${dataURL}" download="${filename}">Download Image</a><br><br>`);
+    imgButton.insertAdjacentHTML('beforeend', `<a href="${blobURL}" download="${filename}">Download again</a><br><br>`);
 
     resetButton.insertAdjacentText('beforeend', 'Reset');
     resetButton.addEventListener('click', (event) => {
@@ -608,6 +793,10 @@ function generateImage() {
       event.stopPropagation();
     });
     imgButton.insertAdjacentElement('beforeend', resetButton);
+  }).catch(err => {
+    console.error('Image generation failed', err);
+    imgButton.innerHTML = `Image failed: ${(err && err.message) || err}`;
+    imgButton.addEventListener('click', generateImage);
   });
 }
 
@@ -679,6 +868,8 @@ function populateOptions() {
       optList.insertAdjacentHTML('beforeend', optInsert(opt.name, opt.key, opt.tooltip, opt.checked));
     }
   });
+
+  if (typeof buildPicker === 'function') buildPicker();
 }
 
 /**
@@ -746,10 +937,11 @@ function decodeQuery(queryString = window.location.search.slice(1)) {
           document.getElementById(`cb-${opt.key}-${subindex}`).checked = subIsTrue;
           document.getElementById(`cb-${opt.key}-${subindex}`).disabled = optIsTrue;
         });
-        suboptDecodedIndex = suboptDecodedIndex + optIsTrue ? 1 : 0;
+        suboptDecodedIndex = suboptDecodedIndex + (optIsTrue ? 1 : 0);
       } else { document.getElementById(`cb-${opt.key}`).checked = optDecoded[index] === '1'; }
     });
 
+    if (typeof syncPicker === 'function') syncPicker();
     successfulLoad = true;
   } catch (err) {
     console.error(`Error loading shareable link: ${err}`);
@@ -762,25 +954,41 @@ function decodeQuery(queryString = window.location.search.slice(1)) {
 /** 
  * Preloads images in the filtered character data and converts to base64 representation.
 */
+/** Full URL for a data set image: local repo paths and data URLs pass through, anything else gets the image host prefix. */
+function imageURL(img) {
+  return /^(src\/|data:|https?:)/.test(img) ? img : imageRoot + img;
+}
+
 function preloadImages() {
   const totalLength = characterDataToSort.length;
   let imagesLoaded = 0;
 
-  const loadImage = async (src) => {
-    const blob = await fetch(src).then(res => res.blob());
-    return new Promise((res, rej) => {
+  const tick = () => progressBar(`Loading images ${++imagesLoaded} of ${totalLength}`, Math.floor(imagesLoaded * 100 / totalLength));
+  progressBar(`Loading images 0 of ${totalLength}`, 0);
+
+  /**
+   * Portraits in the repo are preloaded with an Image element and keep their URL, which also
+   * works when index.html is opened straight from disk (fetch() refuses file:// URLs).
+   * Remote portraits from older data sets are fetched and inlined as data URLs as before.
+   * A broken image never blocks the sorter: it resolves to its URL and shows as broken.
+   */
+  const loadImage = (src) => new Promise(res => {
+    if (!/^https?:/.test(src)) {
+      const img = new Image();
+      img.onload = img.onerror = () => { tick(); res(src); };
+      img.src = src;
+      return;
+    }
+    fetch(src).then(r => r.blob()).then(blob => {
       const reader = new FileReader();
-      reader.onload = ev => {
-        progressBar(`Loading Image ${++imagesLoaded}`, Math.floor(imagesLoaded * 100 / totalLength));
-        res(ev.target.result);
-      };
-      reader.onerror = rej;
+      reader.onload = ev => { tick(); res(ev.target.result); };
+      reader.onerror = () => { tick(); res(src); };
       reader.readAsDataURL(blob);
-    });
-  };
+    }).catch(() => { tick(); res(src); });
+  });
 
   return Promise.all(characterDataToSort.map(async (char, idx) => {
-    characterDataToSort[idx].img = await loadImage(imageRoot + char.img);
+    characterDataToSort[idx].img = await loadImage(imageURL(char.img));
   }));
 }
 

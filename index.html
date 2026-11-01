@@ -1,14 +1,23 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <link rel="shortcut icon" href="src/assets/doro.ico" type="image/x-icon">
-  <link rel="icon" href="src/assets/yinyang.ico" type="image/x-icon">
   <meta charset="utf-8">
-  <meta name="og:site_name" content="Nikke Character Sorting">
-  <meta name="og:description" content="A simple website for sorting Nikke characters in a formatted list.">
-  <meta name="og:image" content="https://imgur.com/FnST3rl">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:site_name" content="Nikke Character Sorting">
+  <meta property="og:description" content="A simple website for sorting Nikke characters in a formatted list.">
+  <meta property="og:title" content="Nikke Character Sorting">
+  <meta property="og:image" content="https://ratman-codes.github.io/charasort-nikke/src/assets/banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Nikke Character Sorting</title>
 
+  <script>
+    /* Apply the saved theme before the stylesheet paints, so there is no flash. */
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <link rel="stylesheet" type="text/css" href="src/css/reset.css">
   <link rel="stylesheet" type="text/css" href="src/css/styles.css">
 
@@ -22,67 +31,71 @@
   <script src="src/js/data/2025-07-24.js"></script>  
   <script src="src/js/data/2025-11-01.js"></script>  
   <script src="src/js/data/2026-04-20.js"></script>  
+  <script src="src/js/data/2026-10-31.js"></script>    
 
   <script src="src/js/html2canvas.min.js"></script>
   <script src="src/js/lz-string.min.js"></script>
   <script src="src/js/seedrandom.min.js"></script>
   <script src="src/js/main.js"></script>
+  <script src="src/js/picker.js"></script>
+  <script src="src/js/theme.js" defer></script>
 </head>
 
 <body>
 <div class="container">
 
+    <div class="topbar"><button type="button" class="theme toggle" title="Switch between light and dark">Theme</button></div>
+
     <div class="progress">
-        <span class="progressbattle"></span>
-        <div class="progressbar">
-            <div class="progressfill"><span class="progresstext"></span></div>
-        </div>
+        <div class="progressrow"><span class="progressbattle"></span><span class="progresstext"></span></div>
+        <div class="progressbar"><div class="progressfill"></div></div>
     </div>
 
     <div class="sorter">
-        <img src="src/assets/defaultL.jpg" class="left sort image">
+        <div class="left port"><img src="src/assets/defaultL.gif" class="left sort image"><span class="kbd">A</span></div>
 
-        <div class="starting start button">Nikke Character Sorter<br><br>Click to Start!</div>
-        <div class="starting load button">Load <span></span></div>
+        <div class="starting start button"><span class="eyebrow">Nikke Character Sorter</span><span class="big">Start</span><span class="hint">click or press Enter</span></div>
+        <div class="starting load button"><span class="lbl">Load <span></span></span></div>
 
         <div class="loading button"><div></div><span>Loading...</span></div>
 
-        <div class="sorting tie button">Tie</div>
-        <div class="sorting undo button">Undo</div>
-        <div class="sorting save button">Save Progress</div>
+        <div class="sorting tie button"><span class="kbd wide">Space</span>Tie</div>
+        <div class="sorting undo button"><div class="half undo-half"><span class="kbd">Z</span>Undo</div><div class="half redo-half"><span class="kbd">X</span>Redo</div></div>
+        <div class="sorting save button"><span class="kbd wide">Enter</span>Save</div>
 
         <div class="finished save button">Generate Result URL</div>
         <div class="finished getimg button">Generate Image</div>
         <div class="finished list button">Generate Text List</div>
 
-        <img src="src/assets/defaultR.jpg" class="right sort image">
+        <div class="right port"><img src="src/assets/defaultR.webp" class="right sort image"><span class="kbd">D</span></div>
 
         <div class="left sort text"><p></p></div>
         <div class="right sort text"><p></p></div>
     </div>
 
-    <div class="options"></div>
-    <div class="image selector">Display Images on Result: </div>
-    <div class="time taken"></div>
+    <div class="intro">
+        <p>Sorter for Nikke characters. Pick your filters if desired, then hit the Start button.</p>
+        <p>Click on the Nikke you like better from the two, or hit Tie if you like them equally or don't know them.</p>
+        <p>Alt forms are left out by default for a character/popularity ranking. Pick "Both" on a card below for a full ranking, just be aware of the time increase.</p>
+        <p class="kb">Keyboard: A / D pick, Space tie, Z undo, X redo, Enter save. Arrow keys and Backspace work too.</p>
+    </div>
+
+    <div class="picker"></div>
+    <details class="morefilters">
+        <summary><span>More filters</span><span class="morefilters-status"></span></summary>
+        <div class="options"></div>
+    </details>
+    <div class="selection"><span class="selection-n"></span><span class="selection-est"></span></div>
+    <div class="image selector">Portraits for top </div>
+    <div class="time taken" hidden></div>
     <div class="results"></div>
 
     <div class="info">
-        <a href="https://github.com/ratman-codes/charasort-nikke">Github</a> | <a class="clearsave">Clear Save Data</a>
+        <a href="https://github.com/ratman-codes/charasort-nikke">Github</a> | <a class="clearsave">Clear Save Data</a> | <a class="debugfinish" title="Debug: finish a sort with random picks and jump to the results">Auto-finish</a>
         
         <br><br>
 
-        <p>Sorter for Nikke characters. Pick your filters if desired, then hit the Start button.</p>
-        <p>Click on the Nikke you like better from the two, or hit tie if you like them equally or don't know them.</p>
-		<p>Filters alts (SSR and SR) by default for character/popularity ranking. Untick these for a full ranking just be aware of the time increase.</p>
-		<p>
-
-        <br>
-
-        <p>KB controls: Pick Left = H. Pick Right = L. Undo = J. Tie = K. Save = S.</p>
-        
-        <br>
-		
-		<p><a href="https://nikke-goddess-of-victory-international.fandom.com/wiki/Nikke/List_by_Manufacturer">Thumbnails</a> | <a href="https://bulkresizephotos.com/en?type=exact&width=120&height=180&format=png">Resize</a> | <a href="https://postimg.cc/gallery/6Cy0zhN">Album</a>
+		<p><a href="https://nkas.pages.dev/nikkes/">Thumbnails</a> | <a href="https://bulkresizephotos.com/en?type=exact&width=120&height=180&format=png">Resize</a> | <a href="https://postimg.cc/gallery/6Cy0zhN">Album</a>
 		
 		<br><br>
 <!--	<center><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fratman-codes.github.io%2Fcharasort-nikke%2F&count_bg=%23AA91FD&title_bg=%23868686&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></center>
@@ -91,7 +104,8 @@
 		<br>
 
         <p>Changelog</p>
-		<p>04/20/26 - Updated with latest Nikkepedia units.</p>		
+		<p>10/31/26 - Updated with latest Nikkepedia units.</p>
+		<p>10/31/26 - New start screen: picture cards for alt-form choices, collapsible filters, live Nikke count, dark mode.</p>		
 		<p>04/13/25 - Updated image host to postimg due to catbox instability.</p>		
 		<p>01/05/25 - Added overspec selection and made overspec nikkes default.</p>
 		<p>11/03/24 - Updated host to catbox since imgur is cringe and kept deleting sneedon and bunny soda.</p>
