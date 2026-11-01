@@ -18,27 +18,27 @@
     /* Apply the saved theme before the stylesheet paints, so there is no flash. */
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
-  <link rel="stylesheet" type="text/css" href="src/css/reset.css?v=20261101c">
-  <link rel="stylesheet" type="text/css" href="src/css/styles.css?v=20261101c">
+  <link rel="stylesheet" type="text/css" href="src/css/reset.css?v=20261101d">
+  <link rel="stylesheet" type="text/css" href="src/css/styles.css?v=20261101d">
 
-  <script src="src/js/data.js?v=20261101c"></script>
-  <script src="src/js/data/2025-01-05.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-02-22.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-04-08.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-04-14.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-04-26.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-06-26.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-07-24.js?v=20261101c"></script>  
-  <script src="src/js/data/2025-11-01.js?v=20261101c"></script>  
-  <script src="src/js/data/2026-04-20.js?v=20261101c"></script>  
-  <script src="src/js/data/2026-10-31.js?v=20261101c"></script>    
+  <script src="src/js/data.js?v=20261101d"></script>
+  <script src="src/js/data/2025-01-05.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-02-22.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-04-08.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-04-14.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-04-26.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-06-26.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-07-24.js?v=20261101d"></script>  
+  <script src="src/js/data/2025-11-01.js?v=20261101d"></script>  
+  <script src="src/js/data/2026-04-20.js?v=20261101d"></script>  
+  <script src="src/js/data/2026-10-31.js?v=20261101d"></script>    
 
-  <script src="src/js/html2canvas.min.js?v=20261101c"></script>
-  <script src="src/js/lz-string.min.js?v=20261101c"></script>
-  <script src="src/js/seedrandom.min.js?v=20261101c"></script>
-  <script src="src/js/main.js?v=20261101c"></script>
-  <script src="src/js/picker.js?v=20261101c"></script>
-  <script src="src/js/theme.js?v=20261101c" defer></script>
+  <script src="src/js/html2canvas.min.js?v=20261101d"></script>
+  <script src="src/js/lz-string.min.js?v=20261101d"></script>
+  <script src="src/js/seedrandom.min.js?v=20261101d"></script>
+  <script src="src/js/main.js?v=20261101d"></script>
+  <script src="src/js/picker.js?v=20261101d"></script>
+  <script src="src/js/theme.js?v=20261101d" defer></script>
 </head>
 
 <body>
@@ -83,6 +83,8 @@
     <div class="picker"></div>
     <details class="morefilters">
         <summary><span>More filters</span><span class="morefilters-status"></span></summary>
+        <div class="filterhead"><span class="filterhint">Every chip starts on. Click a chip to leave those Nikkes out.</span><button type="button" class="filterreset">Reset all</button></div>
+        <div class="filterrows"></div>
         <div class="options"></div>
     </details>
     <div class="selection"><span class="selection-n"></span><span class="selection-est"></span></div>

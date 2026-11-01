@@ -155,7 +155,75 @@ function buildPicker() {
     optList.addEventListener('click', () => setTimeout(syncPicker, 0));
   }
 
+  buildFilterChips();
   syncPicker();
+}
+
+/**
+ * Chip rows for the sub-option groups (rarity, burst, class, ...). Each chip mirrors one sub
+ * checkbox; a group's master checkbox is on exactly when at least one chip is off, so the
+ * sorter and saved links see the same thing they always did. The original checkbox rows
+ * for these groups are hidden; anything the chips don't cover stays visible below them.
+ */
+const CHIP_LABEL = {
+  burst: { burst1: 'I', burst2: 'II', burst3: 'III' },
+};
+
+function buildFilterChips() {
+  const rows = document.querySelector('.filterrows');
+  if (!rows) return;
+  const groups = options.filter(opt => 'sub' in opt && document.getElementById(`cbgroup-${opt.key}`));
+  rows.innerHTML = groups.map(opt => {
+    const chips = opt.sub.map((sub, i) => {
+      const label = opt.key === 'weapon' ? sub.key : (CHIP_LABEL[opt.key] && CHIP_LABEL[opt.key][sub.key]) || sub.name;
+      const cls = [opt.key === 'burst' ? 'roman' : '', opt.key === 'element' ? sub.key : ''].join(' ');
+      return `<button type="button" class="chip ${cls}" data-group="${opt.key}" data-sub="${i}" aria-pressed="true">${opt.key === 'element' ? '<span class="dot"></span>' : ''}${label}</button>`;
+    }).join('');
+    return `<div class="flabel" data-flabel="${opt.key}">${opt.name.replace(/^Filter by /, '')}</div><div class="chips">${chips}</div>`;
+  }).join('');
+
+  /** Hide the checkbox rows the chips now stand in for: the group row, its sub rows and the <hr> after them. */
+  groups.forEach(opt => {
+    const groupDiv = document.getElementById(`cbgroup-${opt.key}`).closest('div');
+    let el = groupDiv;
+    while (el) { const next = el.nextElementSibling; el.hidden = true; if (el.tagName === 'HR') break; el = next; }
+  });
+
+  rows.onclick = (ev) => {
+    const chip = ev.target.closest('.chip');
+    if (!chip) return;
+    const opt = options.find(o => o.key === chip.dataset.group);
+    const box = document.getElementById(`cb-${opt.key}-${chip.dataset.sub}`);
+    box.checked = !box.checked;
+    const anyOff = opt.sub.some((s, i) => !document.getElementById(`cb-${opt.key}-${i}`).checked);
+    document.getElementById(`cbgroup-${opt.key}`).checked = anyOff;
+    opt.sub.forEach((s, i) => document.getElementById(`cb-${opt.key}-${i}`).disabled = !anyOff);
+    syncPicker();
+  };
+
+  const reset = document.querySelector('.filterreset');
+  if (reset) reset.onclick = () => {
+    groups.forEach(opt => {
+      document.getElementById(`cbgroup-${opt.key}`).checked = false;
+      opt.sub.forEach((s, i) => { const b = document.getElementById(`cb-${opt.key}-${i}`); b.checked = true; b.disabled = true; });
+    });
+    syncPicker();
+  };
+}
+
+/** Chips follow the checkboxes. A group that is "on" with every sub still ticked isn't filtering, so it is switched off. */
+function syncFilterChips() {
+  const rows = document.querySelector('.filterrows');
+  if (!rows) return;
+  options.filter(opt => 'sub' in opt && document.getElementById(`cbgroup-${opt.key}`)).forEach(opt => {
+    const group = document.getElementById(`cbgroup-${opt.key}`);
+    const subs = opt.sub.map((s, i) => document.getElementById(`cb-${opt.key}-${i}`));
+    const anyOff = group.checked && subs.some(b => !b.checked);
+    if (group.checked && !anyOff) { group.checked = false; subs.forEach(b => { b.checked = true; b.disabled = true; }); }
+    subs.forEach((b, i) => { const chip = rows.querySelector(`.chip[data-group="${opt.key}"][data-sub="${i}"]`); if (chip) chip.setAttribute('aria-pressed', String(!anyOff || b.checked)); });
+    const label = rows.querySelector(`[data-flabel="${opt.key}"]`);
+    if (label) label.classList.toggle('active', anyOff);
+  });
 }
 
 /** Reflect the checkbox state in the picker, the "More filters" summary and the live count. */
@@ -185,14 +253,15 @@ function syncPicker() {
     btn.querySelector('.pill').textContent = included ? 'Included' : 'Excluded';
   });
 
+  syncFilterChips();
+
   /** Summary of the folded-away filters. */
   const status = document.querySelector('.morefilters-status');
   if (status) {
     const groups = options.filter(opt => 'sub' in opt);
     const active = groups.filter(opt => document.getElementById(`cbgroup-${opt.key}`).checked).map(opt => opt.name.replace(/^Filter by /, ''));
-    const loose = options.filter(opt => !('sub' in opt) && !document.getElementById(`cb-${opt.key}`).parentElement.parentElement.hidden);
     const names = groups.map(opt => opt.name.replace(/^Filter by /, ''));
-    status.textContent = active.length ? `Active: ${active.join(', ')}` : `${names.join(', ')}${loose.length ? ' and more' : ''}. None active.`;
+    status.textContent = active.length ? `Filtering by ${active.join(', ')}` : `${names.join(', ')}. Not filtering.`;
   }
 
   /** Live count. selectCharacters() reads the same checkboxes start() will. */
